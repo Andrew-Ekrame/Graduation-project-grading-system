@@ -1,0 +1,118 @@
+<div class="container">
+  <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1>Add Academic Year</h1>
+
+    <!-- Academic Year -->
+    <div class="input-container">
+      <p class="label">Academic Year</p>
+
+      <!-- Start Year -->
+      <label class="label">Start year</label>
+      <input type="number" class="input-field" formControlName="startYear" />
+      @if (form.get('startYear')?.touched || form.get('startYear')?.dirty) { @if
+      (form.get('startYear')?.errors?.['required']) {
+      <div class="error">Start year is required.</div>
+      } @if (form.get('startYear')?.errors?.['min']) {
+      <div class="error">Start year must be {{ currentYear }} or later.</div>
+      } }
+
+      <!-- End Year -->
+      <label class="label">End year</label>
+      <input type="number" class="input-field" formControlName="endYear" />
+      @if (form.get('endYear')?.touched || form.get('endYear')?.dirty) { @if
+      (form.get('endYear')?.errors?.['required']) {
+      <div class="error">End year is required.</div>
+      } @if (form.get('endYear')?.errors?.['min']) {
+      <div class="error">End year must be {{ currentYear }} or later.</div>
+      } }
+
+      <!-- Year Logic Errors -->
+      @if ( (form.get('startYear')?.dirty || form.get('startYear')?.touched ||
+      form.get('endYear')?.dirty || form.get('endYear')?.touched) && form.errors
+      ) { @if (form.errors['yearsEqual']) {
+      <div class="error">Start and end year cannot be the same.</div>
+      } @if (form.errors['startAfterEnd']) {
+      <div class="error">Start year must be before end year.</div>
+      } @if (form.errors['yearDifferenceInvalid']) {
+      <div class="error">
+        End year must be exactly one year after start year.
+      </div>
+      } }
+    </div>
+
+    <!-- First Term -->
+    <div class="input-container">
+      <p class="label">First Term Duration</p>
+
+      <!-- First Term Start -->
+      <label class="label">Start</label>
+      <input type="date" class="input-field" formControlName="firstTermStart" />
+      @if (form.get('firstTermStart')?.touched ||
+      form.get('firstTermStart')?.dirty) { @if
+      (form.get('firstTermStart')?.errors?.['required']) {
+      <div class="error">First term start is required.</div>
+      } }
+
+      <!-- First Term End -->
+      <label class="label">End</label>
+      <input type="date" class="input-field" formControlName="firstTermEnd" />
+      @if (form.get('firstTermEnd')?.touched || form.get('firstTermEnd')?.dirty)
+      { @if (form.get('firstTermEnd')?.errors?.['required']) {
+      <div class="error">First term end is required.</div>
+      } }
+
+      <!-- First Term Order Error -->
+      @if ((form.get('firstTermStart')?.dirty ||
+      form.get('firstTermEnd')?.dirty) &&
+      form.errors?.['firstTermOrderInvalid']) {
+      <div class="error">First term end must be after start.</div>
+      }
+    </div>
+
+    <!-- Second Term -->
+    <div class="input-container">
+      <p class="label">Second Term Duration</p>
+
+      <!-- Second Term Start -->
+      <label class="label">Start</label>
+      <input
+        type="date"
+        class="input-field"
+        formControlName="secondTermStart"
+      />
+      @if (form.get('secondTermStart')?.touched ||
+      form.get('secondTermStart')?.dirty) { @if
+      (form.get('secondTermStart')?.errors?.['required']) {
+      <div class="error">Second term start is required.</div>
+      } }
+
+      <!-- Second Term End -->
+      <label class="label">End</label>
+      <input type="date" class="input-field" formControlName="secondTermEnd" />
+      @if (form.get('secondTermEnd')?.touched ||
+      form.get('secondTermEnd')?.dirty) { @if
+      (form.get('secondTermEnd')?.errors?.['required']) {
+      <div class="error">Second term end is required.</div>
+      } }
+
+      <!-- Second Term Order Error -->
+      @if ((form.get('secondTermStart')?.dirty ||
+      form.get('secondTermEnd')?.dirty) &&
+      form.errors?.['secondTermOrderInvalid']) {
+      <div class="error">Second term end must be after start.</div>
+      }
+    </div>
+
+    <button class="btn confirm" type="submit" [disabled]="form.invalid">
+      Confirm changes
+    </button>
+    <button class="btn reset" type="reset">Reset</button>
+  </form>
+</div>
+@if(showPopup()){
+<app-popup-status-message
+  [status]="status()"
+  [message]="message()"
+  (popup)="closePopup()"
+></app-popup-status-message>
+}

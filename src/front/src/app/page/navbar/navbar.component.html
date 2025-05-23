@@ -1,0 +1,297 @@
+<button
+  class="navbar-toggle"
+  aria-label="Toggle navigation"
+  (click)="toggleNavbarLinks()"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke-width="1.5"
+    stroke="currentColor"
+    class="navbar-toggle-icon"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+    />
+  </svg>
+</button>
+<div class="navbar-links-container" [class.active]="isNavbarLinksVisible">
+  <button
+    class="navbar-close"
+    aria-label="Close navigation"
+    (click)="toggleNavbarLinks()"
+  >
+    &times;
+  </button>
+  <ul class="navbar-links">
+    <li class="nav-link" (click)="toggleNavbarLinks()">
+      <a
+        routerLink="/home"
+        routerLinkActive="nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Home</a
+      >
+    </li>
+
+    <!-- doctor only links -->
+    @if(storageService.currentUserProfilePublic()?.role === "Doctor"){
+    <li class="nav-link" (click)="toggleNavbarLinks()">
+      <a
+        routerLink="/home/post-project"
+        routerLinkActive="nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Post Project</a
+      >
+    </li>
+    <li class="nav-link" (click)="toggleNavbarLinks()">
+      <a
+        routerLink="/home/my-teams"
+        routerLinkActive="nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >My Teams</a
+      >
+    </li>
+    <li class="nav-link" (click)="toggleNavbarLinks()">
+      <a
+        routerLink="/home/doctor-grading"
+        routerLinkActive="nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Grading</a
+      >
+    </li>
+    <li class="nav-link" (click)="toggleNavbarLinks()">
+      <a
+        routerLink="/home/schedule"
+        routerLinkActive="nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >My Schedules</a
+      >
+    </li>
+    <li class="nav-link" (click)="toggleNavbarLinks()">
+      <a
+        routerLink="/home/projects-requests"
+        routerLinkActive="nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Projects Requests</a
+      >
+    </li>
+    }
+    <!-- end of doctor only links -->
+
+    <!-- admin only links -->
+    @if(storageService.currentUserProfilePublic()?.role === "Admin"){
+    <li class="nav-link" (click)="toggleNavbarLinks()">
+      <a
+        routerLink="/home/all-projects"
+        routerLinkActive="nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >All projects</a
+      >
+    </li>
+    <li class="nav-link" (click)="toggleNavbarLinks()">
+      <a
+        routerLink="/home/admin-grading"
+        routerLinkActive="nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Grading</a
+      >
+    </li>
+    <li class="nav-link">
+      <a routerLink="/home/admin-dashboard" routerLinkActive="nav-link-active">
+        Dashboard
+      </a>
+      <div class="admin-dashboard-links">
+        <a
+          routerLink="/home/admin-dashboard/send-instructions"
+          routerLinkActive="nav-link-active"
+          (click)="toggleNavbarLinks()"
+          >Send instructions</a
+        >
+        <a
+          routerLink="/home/admin-dashboard/create-dr-account"
+          routerLinkActive="nav-link-active"
+          (click)="toggleNavbarLinks()"
+          >Create account</a
+        >
+        <a
+          routerLink="/home/admin-dashboard/create-schedule"
+          routerLinkActive="nav-link-active"
+          (click)="toggleNavbarLinks()"
+          >Create schedule</a
+        >
+        <a
+          routerLink="/home/admin-dashboard/pending-projects-from-dr"
+          routerLinkActive="nav-link-active"
+          (click)="toggleNavbarLinks()"
+          >Pending projects From Doctors</a
+        >
+        <a
+          routerLink="/home/admin-dashboard/pending-projects-from-teams"
+          routerLinkActive="nav-link-active"
+          (click)="toggleNavbarLinks()"
+          >Pending projects From Students</a
+        >
+        <a
+          routerLink="/home/admin-dashboard/add-criteria"
+          routerLinkActive="nav-link-active"
+          (click)="toggleNavbarLinks()"
+          >Add criteria</a
+        >
+        <a
+          routerLink="/home/admin-dashboard/configure-criteria"
+          routerLinkActive="nav-link-active"
+          (click)="toggleNavbarLinks()"
+          >Configure criteria</a
+        >
+        <a
+          routerLink="/home/admin-dashboard/create-academic-year"
+          routerLinkActive="nav-link-active"
+          (click)="toggleNavbarLinks()"
+          >Create academic year</a
+        >
+        <a
+          routerLink="/home/admin-dashboard/set-active-year"
+          routerLinkActive="nav-link-active"
+          (click)="toggleNavbarLinks()"
+          >Set active year</a
+        >
+        <a
+          routerLink="/home/admin-dashboard/grades-report"
+          routerLinkActive="nav-link-active"
+          (click)="toggleNavbarLinks()"
+          >Get grades report</a
+        >
+      </div>
+    </li>
+    }
+    <!-- end of admin only links -->
+    <!-- student only links -->
+    @if(storageService.currentUserProfilePublic()?.role === "Student"){
+    <li class="nav-link" (click)="toggleNavbarLinks()">
+      <a
+        routerLink="/home/team-hub/{{
+          storageService.currentUserProfilePublic()?.teamId
+        }}"
+        routerLinkActive="nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Team hub</a
+      >
+    </li>
+    <li class="nav-link" (click)="toggleNavbarLinks()">
+      <a
+        routerLink="/home/available-projects"
+        routerLinkActive="nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Available projects</a
+      >
+    </li>
+    @if( storageService.currentUserProfilePublic()?.leaderOfTeamId
+    ===storageService.currentUserProfilePublic()?.id &&
+    storageService.currentUserProfilePublic()?.hasProject===false ){
+    <li class="nav-link" (click)="toggleNavbarLinks()">
+      <a
+        routerLink="/home/post-project"
+        routerLinkActive="nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Post Project</a
+      >
+    </li>
+    } @if(!storageService.currentUserProfilePublic()?.teamId){
+    <li class="nav-link" (click)="toggleNavbarLinks()">
+      <a
+        routerLink="/home/team-invites"
+        routerLinkActive="nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >Team invites</a
+      >
+    </li>
+    }
+    <li class="nav-link" (click)="toggleNavbarLinks()">
+      <a
+        routerLink="/home/schedule"
+        routerLinkActive="nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >My Schedule</a
+      >
+    </li>
+    <li class="nav-link" (click)="toggleNavbarLinks()">
+      <a
+        routerLink="/home/my-grades"
+        routerLinkActive="nav-link-active"
+        [routerLinkActiveOptions]="{ exact: true }"
+        >My Grades</a
+      >
+    </li>
+    }
+  </ul>
+</div>
+<div
+  class="notification-list-container"
+  [class.active]="isNotificationListVisible"
+>
+  <app-notification-list
+    [notifications]="notifications()"
+    (markAsRead)="markAsRead($event)"
+  ></app-notification-list>
+  <button class="notification-close" (click)="toggleNotificationList()">
+    &times;
+  </button>
+</div>
+<div class="navbar--info">
+  <div
+    class="notification-container"
+    [ngClass]="{ 'new-notification': unreadNotifications() }"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="32"
+      height="32"
+      fill="#000000"
+      viewBox="0 0 256 256"
+      class="icon notification-icon"
+      (click)="toggleNotificationList()"
+    >
+      <path
+        d="M221.8,175.94C216.25,166.38,208,139.33,208,104a80,80,0,1,0-160,0c0,35.34-8.26,62.38-13.81,71.94A16,16,0,0,0,48,200H88.81a40,40,0,0,0,78.38,0H208a16,16,0,0,0,13.8-24.06ZM128,216a24,24,0,0,1-22.62-16h45.24A24,24,0,0,1,128,216Z"
+      ></path>
+    </svg>
+  </div>
+
+  <button id="logout" class="logout-btn" (click)="logout()">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-6 logout-icon"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
+      />
+    </svg>
+  </button>
+  <a routerLink="/home/profile" class="profile-link">
+    <div class="navbar--profile">
+      <div class="profile-img">
+        <img
+          [src]="
+            storageService.currentUserProfilePublic()?.profilePicture
+              ? storageService.currentUserProfilePublic()?.profilePicture
+              : 'images/blank-profile-picture.webp'
+          "
+          alt="profile picture"
+          class="navbar-profile-img"
+        />
+      </div>
+      <p class="profile-name">
+        {{ storageService.currentUserProfilePublic()?.fullName }}
+      </p>
+    </div>
+  </a>
+</div>

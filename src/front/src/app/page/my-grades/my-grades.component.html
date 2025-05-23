@@ -1,0 +1,198 @@
+<div class="my-grades-wrapper">
+  <h2 class="label">Legend: Criteria Descriptions</h2>
+  @if(loadingCriteria()) {
+  <div id="criteria-legend">
+    <h3 class="header">Loading criteria info...</h3>
+  </div>
+  } @else { @if(!successCriteria()){
+  <div id="criteria-legend">
+    <h3 class="header">{{ textForCriteria() }}</h3>
+  </div>
+  }@else{
+  <div id="criteria-legend">
+    <!-- Supervisor Section -->
+    @if(getFilteredCriteriaFromGiver('Supervisor').length > 0) {
+    <div>
+      <h3 class="header">Supervisor</h3>
+      @if(getFilteredTeamCriteria(getFilteredCriteriaFromGiver('Supervisor')).length
+      > 0) {
+      <div>
+        <h4 class="sub-header">Team</h4>
+        <table border="1" class="table">
+          <thead>
+            <tr>
+              <th class="table-header">Name</th>
+              <th class="table-header">Description</th>
+              <th class="table-header">Max Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(criteria of
+            getFilteredTeamCriteria(getFilteredCriteriaFromGiver('Supervisor'));
+            track criteria.id) {
+            <tr>
+              <td class="table-cell">{{ criteria.name }}</td>
+              <td class="table-cell">{{ criteria.description }}</td>
+              <td class="table-cell">{{ criteria.maxGrade }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      }
+      @if(getFilteredStudentCriteria(getFilteredCriteriaFromGiver('Supervisor')).length
+      > 0) {
+      <div>
+        <h4 class="sub-header">Individual</h4>
+        <table border="1" class="table">
+          <thead>
+            <tr>
+              <th class="table-header">Name</th>
+              <th class="table-header">Description</th>
+              <th class="table-header">Max Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(criteria of
+            getFilteredStudentCriteria(getFilteredCriteriaFromGiver('Supervisor'));
+            track criteria.id) {
+            <tr>
+              <td class="table-cell">{{ criteria.name }}</td>
+              <td class="table-cell">{{ criteria.description }}</td>
+              <td class="table-cell">{{ criteria.maxGrade }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      }
+    </div>
+    <hr class="role-divider" />
+    }
+
+    <!-- Examiner Section -->
+    @if(getFilteredCriteriaFromGiver('Examiner').length > 0) {
+    <div>
+      <h3 class="header">Examiner</h3>
+      @if(getFilteredTeamCriteria(getFilteredCriteriaFromGiver('Examiner')).length
+      > 0) {
+      <div>
+        <h4 class="sub-header">Team</h4>
+        <table border="1" class="table">
+          <thead>
+            <tr>
+              <th class="table-header">Name</th>
+              <th class="table-header">Description</th>
+              <th class="table-header">Max Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(criteria of
+            getFilteredTeamCriteria(getFilteredCriteriaFromGiver('Examiner'));
+            track criteria.id) {
+            <tr>
+              <td class="table-cell">{{ criteria.name }}</td>
+              <td class="table-cell">{{ criteria.description }}</td>
+              <td class="table-cell">{{ criteria.maxGrade }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      }
+      @if(getFilteredStudentCriteria(getFilteredCriteriaFromGiver('Examiner')).length
+      > 0) {
+      <div>
+        <h4 class="sub-header">Individual</h4>
+        <table border="1" class="table">
+          <thead>
+            <tr>
+              <th class="table-header">Name</th>
+              <th class="table-header">Description</th>
+              <th class="table-header">Max Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(criteria of
+            getFilteredStudentCriteria(getFilteredCriteriaFromGiver('Examiner'));
+            track criteria.id) {
+            <tr>
+              <td class="table-cell">{{ criteria.name }}</td>
+              <td class="table-cell">{{ criteria.description }}</td>
+              <td class="table-cell">{{ criteria.maxGrade }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      }
+    </div>
+    <hr class="role-divider" />
+    }
+
+    <!-- Admin Section -->
+    @if(getFilteredCriteriaFromGiver('Admin').length > 0) {
+    <div>
+      <h3 class="header">Admin</h3>
+      @if(getFilteredTeamCriteria(getFilteredCriteriaFromGiver('Admin')).length
+      > 0) {
+      <div>
+        <h4 class="sub-header">Team</h4>
+        <table border="1" class="table">
+          <thead>
+            <tr>
+              <th class="table-header">Name</th>
+              <th class="table-header">Description</th>
+              <th class="table-header">Max Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(criteria of
+            getFilteredTeamCriteria(getFilteredCriteriaFromGiver('Admin'));
+            track criteria.id) {
+            <tr>
+              <td class="table-cell">{{ criteria.name }}</td>
+              <td class="table-cell">{{ criteria.description }}</td>
+              <td class="table-cell">{{ criteria.maxGrade }}</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      }
+    </div>
+    }
+  </div>
+  } } @if(loadingGrades()){
+  <div class="no-grades-message">
+    <p>Loading grades...</p>
+  </div>
+  } @else { @if(!successGrades()){
+  <div class="no-grades-message">
+    <p>{{ textForGrades() }}</p>
+  </div>
+  }@else{
+  <hr class="main-divider" />
+
+  <!-- Report Card Section -->
+  <h2 class="label">Report Card</h2>
+  <div id="student-grades">
+    <table border="1" class="table">
+      <thead>
+        <tr>
+          <th class="table-header">Criteria</th>
+          <th class="table-header">Grade</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(grade of listOfGrades(); track grade.criteriaId) {
+        <tr>
+          <td class="table-cell">{{ grade.criteriaName }}</td>
+          <td class="table-cell">{{ grade.grade }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  } }
+</div>

@@ -1,0 +1,291 @@
+.main {
+  background-image: linear-gradient(
+    to right bottom,
+    var(--background-color-light),
+    var(--background-color)
+  );
+  background-size: cover;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  font-size: 62.5%;
+  font-family: sans-serif;
+  overflow: auto;
+}
+.img {
+  display: block;
+  width: 70%;
+  align-self: center;
+  justify-self: center;
+}
+.logo {
+  width: 5rem;
+  height: 5rem;
+  display: block;
+}
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--form-container-color);
+  flex-direction: column;
+  gap: 2.4rem;
+  height: 100%;
+  width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
+.form-container__header {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  gap: 1.2rem;
+}
+.main-heading {
+  text-align: left;
+  width: 80%;
+  padding: 0.4rem 0.8rem;
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+.secondary-heading {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+.register-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  font-size: 1.2rem;
+  width: 75%;
+  padding: 1rem;
+  /* outline: 1px solid green; */
+}
+label {
+  margin-bottom: 0.4rem;
+}
+.register-error {
+  color: var(--error-color);
+}
+input:not([type="file"]),
+select {
+  width: 100%;
+  padding: 0.8rem 1.6rem;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.3s ease;
+}
+input::placeholder {
+  color: var(--background-color-light);
+  font-family: sans-serif;
+}
+input:focus {
+  outline: 1px solid #ccc;
+}
+.input:not(:last-child) {
+  margin-bottom: 1.2rem;
+}
+.input[type="file"]::file-selector-button,
+.btn {
+  background-color: var(--button-color);
+  color: var(--text-input-color);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.btn {
+  margin-bottom: 2.4rem;
+  width: 100%;
+}
+.btn:hover,
+.input[type="file"]::file-selector-button:hover {
+  background-color: var(--button-color-hover);
+}
+.text {
+  align-self: center;
+}
+.link:link,
+.link:visited {
+  align-self: center;
+  text-decoration: none;
+  color: var(--button-color);
+  transition: all 0.3s ease;
+}
+.link:hover,
+.link:active {
+  color: var(--button-color-hover);
+}
+/* otp popup */
+.show-otp {
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+.hide-otp {
+  position: fixed;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.otp-inputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: center;
+  gap: 2rem;
+  background-color: #ffffff;
+  height: minmax(30%, fit-content);
+  width: 70%;
+  padding: 2rem;
+  border-radius: 10px;
+}
+.otp-message {
+  font-size: 1.4rem;
+}
+.fields {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  height: 80%;
+}
+.fields input.otp-input[type="text"] {
+  border-radius: 5px;
+  border: 2px solid black;
+  transition: all 0.05s ease;
+  color: black;
+  text-align: center;
+}
+.fields input.otp-input:focus {
+  outline: 3px solid black;
+}
+.otp-controls {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.otp-btn {
+  flex-basis: 45%;
+}
+#otp-error {
+  color: red;
+  font-size: 1.2rem;
+}
+@media (max-width: 768px) and (min-width: 376px) {
+  .main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    font-size: 50%;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .img {
+    display: none;
+  }
+  .form-container {
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    border-radius: 5px;
+  }
+  .register-form {
+    width: 100%;
+  }
+  .main-heading {
+    width: 100%;
+    text-align: center;
+  }
+  .text,
+  .link {
+    text-align: center;
+    width: 100%;
+  }
+  .otp-inputs {
+    width: 90%;
+    height: fit-content;
+  }
+  .fields {
+    gap: 0.4rem;
+  }
+  .fields input.otp-input[type="text"] {
+    height: 2rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .main {
+    font-size: 45%;
+    padding: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .register-page-image {
+    display: none;
+  }
+  .form-container {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    grid-column: span 2;
+  }
+  .register-form {
+    padding: 0.5rem;
+    width: 100%;
+  }
+  .main-heading {
+    font-size: 2rem;
+  }
+  .secondary-heading {
+    font-size: 1.5rem;
+  }
+  .otp-inputs {
+    width: 95%;
+    padding: 1.6rem 0.8rem;
+    height: fit-content;
+  }
+  .otp-message {
+    font-size: 1.2rem;
+  }
+  .fields {
+    gap: 0.4rem;
+  }
+  .fields .otp-input[type="text"] {
+    height: 2rem; /* Adjust height */
+    padding: 0.4rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .form-container {
+    width: 100%;
+    height: 100%;
+  }
+  .otp-inputs {
+    height: 50%;
+    width: max(50%, 800px);
+  }
+}

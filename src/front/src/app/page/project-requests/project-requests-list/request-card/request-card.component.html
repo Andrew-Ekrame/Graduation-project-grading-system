@@ -1,0 +1,14 @@
+<div class="team-card">
+  <div class="team-members-list">
+    @for(member of members;track member.id) {
+    <div class="member-img">
+      <img [src]="member.profilePicture" alt="member image" />
+    </div>
+    <p class="member-name">{{ member.fullName }}</p>
+    }
+  </div>
+  <div class="request-controls">
+    <button class="btn accept-btn" (click)="acceptRequest()">Accept</button>
+    <button class="btn reject-btn" (click)="rejectRequest()">Reject</button>
+  </div>
+</div>

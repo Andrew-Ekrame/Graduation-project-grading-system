@@ -1,0 +1,12 @@
+<div
+  class="member-card"
+  [class.selected]="isSelected()"
+  (click)="onMemberSelect()"
+>
+  <img
+    [src]="member().profilePicture"
+    [alt]="member().fullName"
+    class="member-selection-img"
+  />
+  <label>{{ member().fullName }}</label>
+</div>

@@ -1,0 +1,11 @@
+<div class="team-card">
+  <h2 class="project-name">{{ team().name }}</h2>
+  <div class="team-members-list">
+    @for(member of team().members;track member.id){
+    <div class="member-img">
+      <img [src]="member.profilePicture" alt="member image" />
+    </div>
+    <p class="member-name">{{ member.fullName }}</p>
+    }
+  </div>
+</div>

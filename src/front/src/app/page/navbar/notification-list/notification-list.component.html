@@ -1,0 +1,8 @@
+<div class="notification-list">
+  @for(notification of notifications();track notification.id){
+  <app-notification-item
+    [notification]="notification"
+    (markAsRead)="onMarkAsRead($event)"
+  ></app-notification-item>
+  }
+</div>

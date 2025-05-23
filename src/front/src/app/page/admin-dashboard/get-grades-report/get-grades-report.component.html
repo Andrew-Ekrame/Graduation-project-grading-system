@@ -1,0 +1,24 @@
+<div class="form-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-box">
+    <label for="specialty" class="form-label">Select a specialty</label>
+    <select id="specialty" formControlName="specialty" class="form-select">
+      <option value="CS">CS</option>
+      <option value="CS & STAT">CS & STAT</option>
+      <option value="CS & MATH">CS & MATH</option>
+      <option value="CS & PHYS">CS & PHYS</option>
+    </select>
+    <button type="submit" class="form-button">Get excel</button>
+  </form>
+
+  @if(showDownload()) {
+  <a
+    [href]="url()"
+    [download]="fileName()"
+    (click)="revokeUrl()"
+    class="download-link"
+    >Download</a
+  >
+  } @else {
+  <div class="errors">{{ displayedText() }}</div>
+  }
+</div>

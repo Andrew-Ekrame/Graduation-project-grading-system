@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="card-header">
+    <h2 class="title">{{criteria().name}}</h2>
+    <span class="max-grade">Max Grade: {{criteria().maxGrade}}</span>
+  </div>
+  
+  <div class="card-body">
+    <p class="description">{{criteria().description}}</p>
+    
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="label">Evaluator:</span>
+        <span class="value">{{criteria().evaluator}}</span>
+      </div>
+      
+      <div class="info-item">
+        <span class="label">Given To:</span>
+        <span class="value">{{criteria().givenTo}}</span>
+      </div>
+      
+      <div class="info-item">
+        <span class="label">Specialty:</span>
+        <span class="value">{{criteria().specialty}}</span>
+      </div>
+      
+      <div class="info-item">
+        <span class="label">Year:</span>
+        <span class="value">{{criteria().year}}</span>
+      </div>
+      
+      <div class="info-item">
+        <span class="label">Term:</span>
+        <span class="value">{{criteria().term}}</span>
+      </div>
+      
+      <div class="info-item">
+        <span class="label">Created:</span>
+        <span class="value">{{criteria().createdAt}}</span>
+      </div>
+      
+      <div class="info-item">
+        <span class="label">Updated:</span>
+        <span class="value">{{criteria().lastUpdatedAt?criteria().lastUpdatedAt:"NA"}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-actions">
+    <button class="btn edit-btn" (click)="onEditClick()">Edit</button>
+    <button class="btn delete-btn" (click)="onDeleteClick()">Delete</button>
+  </div>
+</div>

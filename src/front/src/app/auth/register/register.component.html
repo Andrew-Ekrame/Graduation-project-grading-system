@@ -1,0 +1,187 @@
+<main class="main">
+  <img
+    src="images/undraw_account_re_o7id.svg"
+    alt="Create account"
+    class="img register-page-image img-responsive"
+  />
+  <div class="form-container">
+    <header class="form-container__header">
+      <img
+        src="images/asuScienceLogo.png"
+        alt="ASU science logo"
+        class="logo img-responsive"
+      />
+      <h2 class="secondary-heading">Graduation Projects System</h2>
+    </header>
+    <h1 class="main-heading">Register</h1>
+    <form class="register-form" (ngSubmit)="onSubmit()" [formGroup]="form">
+      <label for="input-name"
+        >Full Name
+        <span class="register-error">
+          @if(controlIsInvalid(form.controls.fullName) ){ * Please enter your
+          full name }
+        </span>
+      </label>
+
+      <input
+        type="text"
+        class="input input-name"
+        placeholder="Full Name"
+        id="input-name"
+        name="fullname"
+        formControlName="fullName"
+      />
+      <label for="input-email"
+        >Email
+        <span class="register-error">
+          @if(controlIsInvalid(form.controls.email) ){ * Please enter a correct
+          email }
+        </span></label
+      >
+      <input
+        type="email"
+        class="input input-email"
+        placeholder="E-mail"
+        id="input-email"
+        name="email"
+        formControlName="email"
+      />
+      <label for="input-specialty"
+        >Specialty
+        <span class="register-error">
+          @if(controlIsInvalid(form.controls.specialty) ){ * Please select your
+          specialty }
+        </span></label
+      >
+      <select
+        id="input-specialty"
+        name="specialty"
+        class="input input-specialty"
+        formControlName="specialty"
+      >
+        <option value="CS" selected>Computer science special</option>
+        <option value="CS & MATH">Computer science and Mathematics</option>
+        <option value="CS & STAT">Computer Science and Statistics</option>
+        <option value="CS & PHYS">Computer Science and Physics</option>
+      </select>
+      <label for="input-photo"
+        >Profile picture
+        <span class="register-error">
+          @if(photoError() ){ * {{ photoError() }} }
+        </span>
+      </label>
+      <input
+        type="file"
+        class="input input-photo"
+        id="input-photo"
+        name="photo"
+        accept="image/*"
+        (change)="onFileSelect($event)"
+        required
+      />
+      <label for="input-password"
+        >Password
+        <span class="register-error">
+          @if(controlIsInvalid(form.controls.password)) { Please enter a valid
+          password . @if(form.controls.password.hasError("noLowerCase")){ ( Need
+          at least one lowercase character ) }
+          @if(form.controls.password.hasError("noUpperCase")){ ( Need at least
+          one uppercase character ) }
+          @if(form.controls.password.hasError("noNumber")){ ( Need at least one
+          digit ) } @if(form.controls.password.hasError("noSymbol")){ ( Need at
+          least one symbol ) }
+          @if(form.controls.password.hasError("minlength")){ ( Password needs to
+          be at least 8 characters long ) } }
+        </span></label
+      >
+      <input
+        type="password"
+        class="input input-password"
+        placeholder="Password"
+        id="input-password"
+        name="password"
+        formControlName="password"
+      />
+      @if(error()){
+      <span class="register-error">
+        {{ error() }}
+      </span>
+      }
+      <button class="btn" id="register-btn" type="submit">
+        Create Account
+      </button>
+      <p class="text">Already have an account?</p>
+      <a class="link login-link" routerLink="/login">Login</a>
+    </form>
+  </div>
+</main>
+@if(showOTP){
+<div class="show-otp" id="otp-popup">
+  <form class="otp-inputs" [formGroup]="otpForm" (ngSubmit)="onSubmitOTP()">
+    <p class="otp-message">
+      Registration successful , please enter OTP sent to your email
+    </p>
+    <div class="fields">
+      <input
+        type="text"
+        class="otp-input"
+        id="otp-input-1"
+        required
+        min="0"
+        maxlength="1"
+        formControlName="otp1"
+      />
+      <input
+        type="text"
+        class="otp-input"
+        id="otp-input-2"
+        required
+        min="0"
+        maxlength="1"
+        formControlName="otp2"
+      />
+      <input
+        type="text"
+        class="otp-input"
+        id="otp-input-3"
+        required
+        min="0"
+        maxlength="1"
+        formControlName="otp3"
+      />
+      <input
+        type="text"
+        class="otp-input"
+        id="otp-input-4"
+        required
+        min="0"
+        maxlength="1"
+        formControlName="otp4"
+      />
+      <input
+        type="text"
+        class="otp-input"
+        id="otp-input-5"
+        required
+        min="0"
+        maxlength="1"
+        formControlName="otp5"
+      />
+      <input
+        type="text"
+        class="otp-input"
+        id="otp-input-6"
+        required
+        min="0"
+        maxlength="1"
+        formControlName="otp6"
+      />
+    </div>
+    <p id="otp-error">{{ otpError }}</p>
+    <div class="otp-controls">
+      <button class="btn otp-btn" type="submit">Submit</button>
+      <button class="btn otp-btn" type="button" (click)="resendOTP()">Resend OTP</button>
+    </div>
+  </form>
+</div>
+}

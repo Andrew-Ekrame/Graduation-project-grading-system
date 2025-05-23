@@ -1,0 +1,24 @@
+<div class="invite-card">
+  <p class="team-name">{{ invite().teamName }}</p>
+  <ul>
+    @for(student of teamMembers;track student.id){
+    <li class="member">
+      @if(student.id === invite().leaderId){
+      <p class="leader-tag">Leader</p>
+      }
+      <img
+        [src]="student.profilePicture"
+        alt="student image"
+        class="member-img"
+      />
+      <p class="student-name">{{ student.fullName }}</p>
+    </li>
+    }
+  </ul>
+  <div class="invite-controls">
+    <button class="accept btn" (click)="respondToInvite(true)">Accept</button>
+    <button class="decline btn" (click)="respondToInvite(false)">
+      Decline
+    </button>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+@import "quill/dist/quill.snow.css";
+@import "quill/dist/quill.bubble.css";
+@import "quill/dist/quill.core.css";
+
+/* You can add global styles to this file, and also import other style files */
+/*
+Background: Navy Blue (#1A2B49) creates a solid and professional background.
+Form Container: Light Gray (#F5F5F5) keeps the form clean and readable.
+Text Inputs: White (#FFFFFF) ensures input fields are clear and easy to use.
+Buttons: Sky Blue (#4A90E2) for call-to-action buttons makes them stand out.
+Success and Error Messages: Green (#27AE60) for success, Red (#E74C3C) for errors to give instant visual feedback
+*/
+/*
+-FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+-line heights:
+default:1
+small:1.05
+paragraph default:1.6
+greys:
+#555,#333,#6f6f6f,#888,#767676
+---3-shadows
+0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+---5-whitespace
+-SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+
+:root {
+  --background-color: #1a2b49;
+  --form-container-color: #f5f5f5;
+  --text-input-color: #ffffff;
+  --buttons-color: #4a90e2;
+  --success-color: #27ae60;
+  --success-color-dark: #1b7a43;
+  --error-color: #e74c3c;
+  --error-color-dark: #a2352a;
+  --heading-color: #000;
+  --active-link-color: #fdc800;
+  --shadow-light: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.075);
+  --shadow-dark: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.2);
+  --background-color-light: #768092;
+  --dark-blue-gradient: linear-gradient(
+    to left,
+    var(--background-color-light),
+    var(--background-color)
+  );
+  --button-color: #4a90e2;
+  --button-color-hover: #254871;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  /* 1rem=10px */
+  font-size: 62.5%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Open Sans", sans-serif;
+}
+img {
+  display: block;
+  width: 100%;
+}
+.icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  fill: black;
+}

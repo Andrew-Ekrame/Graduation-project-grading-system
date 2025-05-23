@@ -1,0 +1,111 @@
+:host {
+  height: 100%;
+  display: block;
+}
+.search-for-members {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+.back-btn {
+  align-self: flex-start;
+  background-color: var(--buttons-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.back-btn:hover {
+  background-color: var(--button-color-hover);
+}
+input {
+  width: 100%;
+  padding: 0.4rem 0.8rem;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+.members {
+  overflow-y: hidden;
+}
+.filtered-members {
+  list-style: none;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.warning {
+  color: var(--buttons-color);
+  height: 100%;
+  font-size: 2.4rem;
+  text-align: center;
+}
+.student {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.6rem;
+  transition: all 0.3s ease;
+  padding: 0.4rem 0.8rem;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.student:hover {
+  background-color: var(--form-container-color);
+}
+.student-img {
+  height: 3rem;
+  width: 3rem;
+  display: block;
+  border-radius: 50%;
+}
+.student-name {
+  font-size: 1.6rem;
+}
+/* confirm invite */
+.confirm-invite {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1.6rem;
+  overflow-y: auto;
+}
+.confirm-message {
+  font-size: 2.4rem;
+  text-align: center;
+}
+.selected-name {
+  color: var(--buttons-color);
+}
+.confirm-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.invite-control-btn {
+  padding: 0.8rem 1.6rem;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.confirm {
+  background-color: var(--success-color);
+}
+.cancel {
+  background-color: var(--error-color);
+}
+.confirm:hover {
+  background-color: var(--success-color-dark);
+}
+.cancel:hover {
+  background-color: var(--error-color-dark);
+}

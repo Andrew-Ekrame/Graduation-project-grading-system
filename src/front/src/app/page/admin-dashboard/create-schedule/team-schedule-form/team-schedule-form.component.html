@@ -1,0 +1,69 @@
+<div class="schedule-card">
+  <div class="card-header">
+    <h2 class="team-name">{{ team().name }}</h2>
+  </div>
+
+  <div class="card-body">
+    <form [formGroup]="scheduleForm">
+      <div class="examiners-section">
+        <label>Examiners (Select 1-3)</label>
+        <div class="examiners-grid">
+          @for (examiner of filteredExaminers(); track examiner.doctorId) {
+          <app-examiner-selection-card
+            [examiner]="examiner"
+            [isSelected]="selectedExaminers().includes(examiner.doctorId)"
+            [class.disabled]="
+              selectedExaminers().length === 3 &&
+              !selectedExaminers().includes(examiner.doctorId)
+            "
+            (selected)="onExaminerSelect($event)"
+          />
+          }
+        </div>
+        @if (scheduleForm.get('examiners')?.errors &&
+        scheduleForm.get('examiners')?.touched) {
+        <div class="error-message">
+          @if (scheduleForm.get('examiners')?.errors?.['tooFew']) {
+          <span>Please select at least one examiner</span>
+          } @if (scheduleForm.get('examiners')?.errors?.['tooMany']) {
+          <span>Maximum of 3 examiners allowed</span>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="date-section">
+        <div class="form-group">
+          <label>Schedule Date</label>
+          <input
+            type="date"
+            class="form-control"
+            formControlName="scheduleDate"
+          />
+          @if (scheduleForm.get('scheduleDate')?.errors &&
+          scheduleForm.get('scheduleDate')?.touched) {
+          <div class="error-message">
+            @if (scheduleForm.get('scheduleDate')?.errors?.['required']) {
+            <span>Schedule date is required</span>
+            }
+          </div>
+          }
+        </div>
+      </div>
+
+      <div class="buttons-section">
+        <button type="button" class="btn btn-secondary" (click)="onReset()">
+          Reset
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="onConfirm()"
+          [disabled]="scheduleForm.invalid"
+        >
+          Confirm Schedule
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

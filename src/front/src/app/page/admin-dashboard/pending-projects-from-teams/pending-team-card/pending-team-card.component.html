@@ -1,0 +1,22 @@
+<div class="Post">
+  <p><strong>Project Name:</strong>{{ ideas().name }}</p>
+  <p><strong>Team Name:</strong>{{ ideas().teamName }}</p>
+  <div
+    [innerHTML]="parseHtmlFromApi(ideas().description)"
+    class="ql-editor description"
+  ></div>
+  <div action="" class="accept-form">
+    <button class="accept status-btn" (click)="onClick('Accepted')">
+      Accept
+    </button>
+    <button class="reject status-btn" (click)="onClick('Rejected')">
+      Reject
+    </button>
+
+    <select id="Doctors" [(ngModel)]="selectedDr" name="Doctors">
+      @for( doctor of doctor();track doctor.doctorId){
+      <option [value]="doctor.doctorId">{{ doctor.doctorName }}</option>
+      }
+    </select>
+  </div>
+</div>

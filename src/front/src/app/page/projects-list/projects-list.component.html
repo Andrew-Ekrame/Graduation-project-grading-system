@@ -1,0 +1,31 @@
+@if (loading()) {
+<div class="no-projects">
+  {{ displayedText() }}
+</div>
+} @else { @if (noProjectsError || !acceptedProjectsPublic() ||
+acceptedProjectsPublic().length === 0) {
+<div class="no-projects">
+  {{ displayedText() }}
+</div>
+} @else {
+<div class="projects-list-main" [class.noScroll]="showOverlay">
+  @for (project of acceptedProjectsPublic(); track project.id) {
+  <app-project-card
+    [project]="project"
+    (showOverlay)="toggleOverlay($event)"
+  ></app-project-card>
+  }
+</div>
+} } @if (showOverlay) {
+<app-project-info-overlay
+  (close)="toggleOverlayFalse($event)"
+  [project]="selectedProject()"
+  (popup)="showPopup($event)"
+></app-project-info-overlay>
+} @if(openPopup()){
+<app-popup-status-message
+  [status]="status()"
+  [message]="message()"
+  (popup)="closePopup()"
+></app-popup-status-message>
+}

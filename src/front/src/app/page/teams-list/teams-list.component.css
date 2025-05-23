@@ -1,0 +1,62 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow-y: auto;
+}
+.teams-list-main {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: 50vh;
+  gap: 1.2rem;
+  width: 100%;
+  height: 100%;
+}
+a,
+a:link,
+a:active,
+a:hover,
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+.team-card-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.message {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 600;
+}
+@media (max-width: 1200px) {
+  .teams-list-main {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .teams-list-main {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .teams-list-main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .teams-list-main {
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    width: 100%;
+  }
+}

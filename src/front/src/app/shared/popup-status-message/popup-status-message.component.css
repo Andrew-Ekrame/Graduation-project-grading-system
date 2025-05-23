@@ -1,0 +1,22 @@
+.message {
+  opacity: 1;
+  position: fixed;
+  left: 1rem;
+  bottom: 2rem;
+  width: fit-content;
+  height: 50px;
+  padding: 0 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+  color: white;
+  border-radius: 3px;
+}
+.success {
+  background-color: #27ae60;
+}
+.error {
+  background-color: #f44336;
+}

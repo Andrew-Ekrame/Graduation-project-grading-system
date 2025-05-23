@@ -1,0 +1,127 @@
+<div class="criteria-container">
+  <form [formGroup]="form" class="criteria-form" (ngSubmit)="onSubmit()">
+    <h1>Add Criteria For Grading</h1>
+    <div class="title">
+      <label for="name">Title:</label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        placeholder="Enter the title of Grading here"
+      />
+      @if (form.get('name')?.touched && form.get('name')?.errors?.['required'])
+      {
+      <span class="error">Title is required</span>
+      }
+    </div>
+
+    <div class="grade">
+      <label for="maxGrade">Maximum Grade:</label>
+      <input
+        id="maxGrade"
+        type="number"
+        formControlName="maxGrade"
+        placeholder="Enter the max Grade here"
+      />
+      @if (form.get('maxGrade')?.touched &&
+      form.get('maxGrade')?.errors?.['required']) {
+      <span class="error">Maximum grade is required</span>
+      } @if (form.get('maxGrade')?.touched &&
+      form.get('maxGrade')?.errors?.['min']) {
+      <span class="error">Grade must be greater than 0</span>
+      }
+    </div>
+
+    <div class="desc">
+      <label for="description">Description:</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        placeholder="Enter description"
+        rows="3"
+      ></textarea>
+      @if (form.get('description')?.touched &&
+      form.get('description')?.errors?.['required']) {
+      <span class="error">Description is required</span>
+      }
+    </div>
+
+    <div class="select-from">
+      <label for="evaluator">Given by</label>
+      <select
+        id="evaluator"
+        formControlName="evaluator"
+        [(ngModel)]="selectedGivenBy"
+      >
+        <option value="Examiner" selected>Examiner</option>
+        <option value="Supervisor">Supervisor</option>
+        <option value="Admin">Admin</option>
+      </select>
+    </div>
+
+    <div class="select-to">
+      <label for="givenTo">Given To</label>
+      <select id="givenTo" formControlName="givenTo">
+        <option value="Team" selected>Team</option>
+        @if(selectedGivenBy() === 'Examiner' || selectedGivenBy() ===
+        'Supervisor') {
+        <option value="Student">Student</option>
+        }
+      </select>
+    </div>
+
+    <div class="program">
+      <label for="specialty">Program</label>
+      <select id="specialty" formControlName="specialty">
+        <option value="CS">Computer Science</option>
+        <option value="CS & STAT">Stat and Computer Science</option>
+        <option value="CS & MATH">Math and Computer Science</option>
+        <option value="CS & PHYS">Physics and Computer Science</option>
+      </select>
+    </div>
+
+    <div class="term">
+      <label for="term">Term</label>
+      <select id="term" formControlName="term">
+        <option value="First-Term">First Term</option>
+        <option value="Second-Term">Second Term</option>
+      </select>
+    </div>
+
+    <button
+      type="button"
+      class="submit-btn"
+      [disabled]="form.invalid"
+      (click)="showConfirmation()"
+    >
+      Add Criteria
+    </button>
+  </form>
+</div>
+
+@if (showConfirm()) {
+<div class="confirm-popup">
+  <div class="confirm-content">
+    <h2>Confirm Details</h2>
+    <div class="details">
+      <p><strong>Title:</strong> {{ form.get("name")?.value }}</p>
+      <p><strong>Maximum Grade:</strong> {{ form.get("maxGrade")?.value }}</p>
+      <p><strong>Description:</strong> {{ form.get("description")?.value }}</p>
+      <p><strong>Given By:</strong> {{ form.get("evaluator")?.value }}</p>
+      <p><strong>Given To:</strong> {{ form.get("givenTo")?.value }}</p>
+      <p><strong>Program:</strong> {{ form.get("specialty")?.value }}</p>
+      <p><strong>Term:</strong> {{ form.get("term")?.value }}</p>
+    </div>
+    <div class="confirm-actions">
+      <button class="confirm-btn" (click)="onSubmit()">Confirm</button>
+      <button class="cancel-btn" (click)="cancelConfirmation()">Cancel</button>
+    </div>
+  </div>
+</div>
+} @if (showPopup()) {
+<app-popup-status-message
+  [status]="status()"
+  [message]="message()"
+  (popup)="closePopup()"
+/>
+}

@@ -1,0 +1,186 @@
+<div class="page-container">
+  <div class="form-container">
+    <!-- Back Button -->
+    <button
+      class="back-button"
+      (click)="goBack()"
+      [disabled]="isBackButtonDisabled()"
+    >
+      ← Go Back
+    </button>
+
+    <!-- Team Grades Form -->
+    <form [formGroup]="teamGradingForm" (ngSubmit)="prepareTeamConfirmation()">
+      <section>
+        <h2>Team Grades</h2>
+        @if (teamCriterias().length === 0) {
+        <p class="no-criteria-message">No team grading criteria available.</p>
+        } @else {
+        <div formArrayName="grades">
+          @for (grade of teamGrades.controls; track grade; let i = $index) {
+          <div [formGroupName]="i" class="team-criteria">
+            <div class="form-field">
+              <label [for]="'teamCriteria' + i">
+                {{ teamCriterias()[i].name }} (Max:
+                {{ teamCriterias()[i].maxGrade }})
+              </label>
+              <input
+                type="number"
+                [id]="'teamCriteria' + i"
+                formControlName="grade"
+                min="0"
+                [max]="teamCriterias()[i].maxGrade"
+                [ngClass]="{
+                  'input-error':
+                    grade.get('grade')?.invalid && grade.get('grade')?.touched
+                }"
+              />
+              <p class="criteria-description">
+                {{ teamCriterias()[i].description }}
+              </p>
+              @if (grade.get('grade')?.invalid && grade.get('grade')?.touched) {
+              <p class="error-message">
+                Grade must be between 0 and {{ teamCriterias()[i].maxGrade }}
+              </p>
+              }
+            </div>
+          </div>
+          }
+        </div>
+        <div class="submit-container">
+          <button
+            type="submit"
+            [disabled]="
+              teamGradingForm.invalid || teamGrades.controls.length === 0
+            "
+          >
+            Submit Team Grades
+          </button>
+        </div>
+        }
+      </section>
+    </form>
+
+    <!-- Student Grades Form -->
+    <form
+      [formGroup]="studentGradingForm"
+      (ngSubmit)="prepareStudentConfirmation()"
+    >
+      <section>
+        <h2>Student Grades</h2>
+        @if (studentCriterias().length === 0) {
+        <p class="no-criteria-message">
+          No student grading criteria available.
+        </p>
+        } @else {
+        <!-- Student Cards -->
+        <div class="student-grid">
+          @for (member of team().teamMembers; track member.id; let i = $index) {
+          <div
+            (click)="selectStudent(member.id, i)"
+            class="student-card"
+            [ngClass]="{
+              selected: selectedStudentId() === member.id
+            }"
+          >
+            <div class="student-photo-container">
+              <img
+                [src]="
+                  member.profilePicture || 'https://via.placeholder.com/40'
+                "
+                [alt]="member.fullName + ' Photo'"
+                class="student-photo"
+              />
+              @if (!gradedStatus()[i]) {
+              <span class="ungraded-indicator"></span>
+              }
+            </div>
+            <div class="student-info">
+              <span class="student-name">{{ member.fullName }}</span>
+            </div>
+          </div>
+          }
+        </div>
+
+        <!-- Student Grades (Visible when a student is selected) -->
+        @if (selectedStudentId()) {
+        <div class="student-grades">
+          <h3>Grades for {{ selectedStudentName() }}</h3>
+          <div formArrayName="grades">
+            @for (grade of studentGrades.controls; track grade; let i = $index)
+            {
+            <div [formGroupName]="i" class="student-criteria">
+              <div class="form-field">
+                <label [for]="'studentCriteria' + i">
+                  {{ studentCriterias()[i].name }} (Max:
+                  {{ studentCriterias()[i].maxGrade }})
+                </label>
+                <input
+                  type="number"
+                  [id]="'studentCriteria' + i"
+                  formControlName="grade"
+                  min="0"
+                  [max]="studentCriterias()[i].maxGrade"
+                  [ngClass]="{
+                    'input-error':
+                      grade.get('grade')?.invalid && grade.get('grade')?.touched
+                  }"
+                />
+                <p class="criteria-description">
+                  {{ studentCriterias()[i].description }}
+                </p>
+                @if (grade.get('grade')?.invalid && grade.get('grade')?.touched)
+                {
+                <p class="error-message">
+                  Grade must be between 0 and
+                  {{ studentCriterias()[i].maxGrade }}
+                </p>
+                }
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+        }
+        <div class="submit-container">
+          <button
+            type="submit"
+            [disabled]="
+              studentGradingForm.invalid ||
+              !selectedStudentId ||
+              studentGrades.controls.length === 0
+            "
+          >
+            Submit Student Grades
+          </button>
+        </div>
+        }
+      </section>
+    </form>
+
+    <!-- Confirmation Dialog -->
+    @if (showConfirmDialog()) {
+    <div class="confirm-overlay" [ngClass]="{ active: showConfirmDialog() }">
+      <div class="confirm-dialog">
+        <h3>{{ confirmData()?.title }}</h3>
+        <div class="confirm-content">
+          <p>Please review the grades to be submitted:</p>
+          <ul class="grades-list">
+            @for (grade of confirmData()?.grades; track grade) {
+            <li>{{ grade.criteriaName }}: {{ grade.grade }}</li>
+            }
+          </ul>
+        </div>
+        <div class="confirm-buttons">
+          <button class="confirm-button" (click)="confirmSubmission()">
+            Confirm
+          </button>
+          <button class="cancel-button" (click)="cancelConfirmation()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

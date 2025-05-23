@@ -1,0 +1,50 @@
+@if(!showInvitationConfirm()){
+
+<div class="search-for-members">
+  <button (click)="closeSearchComponent()" class="back-btn">&lt; Back</button>
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Enter a username"
+      [(ngModel)]="enteredName"
+      (keyup)="filterTheList()"
+    />
+  </div>
+  <div class="members">
+    <ul class="filtered-members">
+      @for(student of filteredList();track student.id){
+      <li class="student" (click)="setSelectedMember(student)">
+        <img
+          [src]="student.profilePicture"
+          alt="student name"
+          class="student-img"
+        />
+        <p class="student-name">{{ student.fullName }}</p>
+      </li>
+      }
+    </ul>
+  </div>
+</div>
+} @else{
+<div class="confirm-invite">
+  <p class="confirm-message">
+    Are you sure you want to invite
+    <span class="selected-name">
+      {{ selectedStudent()?.fullName }}
+    </span>
+    to your team?
+  </p>
+  <div class="confirm-controls-row">
+    <button
+      class="invite-control-btn cancel"
+      (click)="closeInvitationConfirm()"
+    >
+      Cancel
+    </button>
+    <button class="invite-control-btn confirm" (click)="sendInvite()">
+      Confirm
+    </button>
+  </div>
+</div>
+
+}

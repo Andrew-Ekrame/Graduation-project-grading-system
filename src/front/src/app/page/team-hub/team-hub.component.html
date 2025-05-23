@@ -1,0 +1,85 @@
+@if(!inTeam() && storingService.currentUserProfilePublic()?.role !== 'Doctor'){
+@if(!openFormInputs()){
+<div class="create-team-wrapper">
+  <div class="create-team">
+    <p>You aren't in a team yet, But you can create one</p>
+    <button class="create-team-btn" (click)="openForm()">Create a team</button>
+  </div>
+</div>
+} @else if(openFormInputs()){
+<div class="create-team-form-wrapper">
+  <form class="create-team-form" (ngSubmit)="createTeam()" [formGroup]="form">
+    <label
+      >Enter team name <span class="error">{{ error() }}</span></label
+    >
+    <input type="text" placeholder="Team name" formControlName="teamName" />
+    <button class="submit-btn" type="submit">Create my team</button>
+  </form>
+</div>
+} } @else if(inTeam() || storingService.currentUserProfilePublic()?.role ===
+'Doctor'){
+
+<div class="team-hub-wrapper">
+  <div class="team-members-wrapper">
+    @if(!openSearch()){
+    <!-- a n*2 grid -->
+    <aside class="team-members">
+      @for(member of teamMembers();track member.id){
+      <div class="member-img">
+        <img [src]="member.profilePicture" alt="member image" />
+      </div>
+      <p class="member-name">{{ member.fullName }}</p>
+      } @if(isLeader() || checkLeader){
+      <button class="search-btn" (click)="openSearchComponent()">
+        Search For more team members
+      </button>
+      }
+    </aside>
+    } @else {
+    <div class="search-wrapper">
+      <app-search-for-members
+        (closeSearch)="closeSearchComponent()"
+        [unassignedStudents]="studentsWithoutTeams()"
+        [teamData]="teamData()!"
+        (sendInvitePopup)="popup($event)"
+      ></app-search-for-members>
+    </div>
+    }
+  </div>
+  <aside class="team-project">
+    <h2 class="project-name">{{ teamData()?.name }}</h2>
+    @if(projectLoading()){
+    <div class="loading-project-details">Loading project details...</div>
+    } @else { @if(project() === null){
+    <div class="loading-project-details">{{ projectNotFoundMessage() }}</div>
+    } @else {
+    <h2 class="project-name">{{ project()?.projectName }}</h2>
+    <p class="project-desc ql-editor" [innerHTML]="html()"></p>
+    } }
+  </aside>
+
+  <!-- tasks section (different controls for students and doctors) -->
+  <section class="tasks-side">
+    @if(teamDataFound()){ @if(!openAddTask()){
+    <app-tasks-list
+      (openAddNewTask)="openAddNewTask()"
+      [teamData]="teamData()!"
+      (popup)="popup($event)"
+    ></app-tasks-list>
+    } @else {
+    <app-add-task
+      (goBackToTasksList)="closeAddNewTask()"
+      [teamData]="teamData()!"
+      (popup)="popup($event)"
+    ></app-add-task>
+    } }
+  </section>
+  <!-- end tasks section -->
+</div>
+} @if(openPopUp()){
+<app-popup-status-message
+  [message]="message()"
+  [status]="status()"
+  (popup)="hidePopUp()"
+></app-popup-status-message>
+}

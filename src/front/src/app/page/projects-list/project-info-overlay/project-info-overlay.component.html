@@ -1,0 +1,33 @@
+<div class="overlay" id="overlay">
+  <div class="overlay-content">
+    <div class="overlay-header">
+      <h2 class="overlay--project-name">{{ project()?.name }}</h2>
+      <button class="btn close-btn" (click)="closeOverlay()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="2"
+          stroke="currentColor"
+          class="close-icon"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18 18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+    <h4 class="overlay--project-supervisor">
+      Posted By Dr :
+      <span class="overlay--supervisor-name">{{ project()?.doctorName }}</span>
+    </h4>
+    <div class="ql-editor quill-project-desc" [innerHTML]="html()"></div>
+    @if(ableToApply){
+    <button class="btn apply-btn" (click)="applyOnProject()">
+      Apply on this Project
+    </button>
+    }
+  </div>
+</div>

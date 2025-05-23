@@ -1,0 +1,27 @@
+@if(loading()){
+<div class="loading">
+  {{ displayedText() }}
+</div>
+} @else { @if(success()){
+<div class="teams-forms-list">
+  @for(team of teamsData();track team.id){
+  <app-team-schedule-form
+    [team]="team"
+    [examiners]="examinersList()"
+    (createSchedule)="createSchedule($event)"
+  ></app-team-schedule-form>
+  } @empty {
+  <div class="loading">No teams available</div>
+  }
+</div>
+} @else {
+<div class="loading">
+  {{ displayedText() }}
+</div>
+} } @if(showPopup()){
+<app-popup-status-message
+  [status]="status()"
+  [message]="message()"
+  (popup)="closePopup()"
+></app-popup-status-message>
+}

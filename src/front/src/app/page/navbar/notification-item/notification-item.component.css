@@ -1,0 +1,41 @@
+.notification-item {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  display: flex;
+  gap: 0.8rem;
+  flex-direction: column;
+}
+.title::after {
+  display: block;
+  content: "";
+  width: 100%;
+  border: 1px solid black;
+}
+.description {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.notification-item.read {
+  font-weight: normal;
+}
+.notification-item:not(.read) {
+  font-weight: bold;
+}
+.notification-item p {
+  font-size: 1.6rem;
+}
+.notification-item button {
+  background-color: var(--buttons-color);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  align-self: flex-end;
+}
+.notification-item button:hover {
+  background-color: var(--button-hover-background-color);
+}

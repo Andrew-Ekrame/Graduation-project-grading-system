@@ -1,0 +1,64 @@
+<button class="back-to-tasks-list-btn" (click)="goBack()">Go back</button>
+<div class="add-task-form-wrapper">
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="task-form">
+    <div class="form-group">
+      <label for="taskName">Task Name *</label>
+      <input
+        id="taskName"
+        type="text"
+        formControlName="taskName"
+        [class.error]="
+          taskForm.get('taskName')?.touched && taskForm.get('taskName')?.invalid
+        "
+      />
+      @if (taskForm.get('taskName')?.touched &&
+      taskForm.get('taskName')?.invalid) {
+      <div class="error-message">Task name is required</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="deadline">Deadline *</label>
+      <input
+        id="deadline"
+        type="date"
+        formControlName="deadline"
+        [class.error]="
+          taskForm.get('deadline')?.touched && taskForm.get('deadline')?.invalid
+        "
+      />
+      @if (taskForm.get('deadline')?.touched &&
+      taskForm.get('deadline')?.invalid) {
+      <div class="error-message">Deadline is required</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label>Assign Members *</label>
+      <div class="members-list">
+        @for (member of teamData().members; track member.id) {
+        <app-member-card
+          [member]="member"
+          (memberSelected)="onMemberSelected($event)"
+        />
+        }
+      </div>
+      @if (selectedMembers.touched && selectedMembers.invalid) {
+      <div class="error-message">Please select at least one member</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label>Description *</label>
+      <div #editorContainer class="editor-container"></div>
+      @if ((taskForm.get('description')?.touched &&
+      taskForm.get('description')?.invalid) || quillShowError()) {
+      <div class="error-message">Description is required</div>
+      }
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="taskForm.invalid">Create Task</button>
+    </div>
+  </form>
+</div>

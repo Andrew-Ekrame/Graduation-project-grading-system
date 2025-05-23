@@ -1,0 +1,48 @@
+@if (loading()) {
+<div class="loading">{{ displayedText() }}</div>
+} @else { @if (success()) { @if (criteriaList().length === 0) {
+<div class="loading">No criteria found</div>
+} @else { @if (editorOpened()) {
+<app-criteria-editor
+  [editedCriteria]="selectedCriteria()!"
+  (closeEditor)="closeEditor()"
+  (editForm)="editCriteria($event)"
+></app-criteria-editor>
+} @else {
+<div class="criteria-list">
+  @for (criteria of criteriaList(); track criteria.id) {
+  <app-criteria-card
+    [criteriaInput]="criteria"
+    (selectedCriteria)="openEditor($event)"
+    (deleteCriteria)="openDeleteConfirm($event)"
+  />
+  }
+</div>
+@if (showDeleteConfirm()) {
+<div class="confirm-popup">
+  <div class="confirm-content">
+    <h2>Confirm Deletion</h2>
+    <div class="details">
+      <p><strong>Title:</strong> {{ criteriaToDelete()?.name }}</p>
+      <p><strong>Maximum Grade:</strong> {{ criteriaToDelete()?.maxGrade }}</p>
+      <p><strong>Description:</strong> {{ criteriaToDelete()?.description }}</p>
+      <p><strong>Given By:</strong> {{ criteriaToDelete()?.evaluator }}</p>
+      <p><strong>Given To:</strong> {{ criteriaToDelete()?.givenTo }}</p>
+      <p><strong>Program:</strong> {{ criteriaToDelete()?.specialty }}</p>
+      <p><strong>Term:</strong> {{ criteriaToDelete()?.term }}</p>
+    </div>
+    <div class="confirm-actions">
+      <button class="confirm-btn" (click)="confirmDelete()">Delete</button>
+      <button class="cancel-btn" (click)="cancelDeleteConfirm()">Cancel</button>
+    </div>
+  </div>
+</div>
+} } } } @else {
+<div class="loading">{{ displayedText() }}</div>
+} } @if(showPopup()) {
+<app-popup-status-message
+  [status]="status()"
+  [message]="message()"
+  (popup)="closePopup()"
+/>
+}

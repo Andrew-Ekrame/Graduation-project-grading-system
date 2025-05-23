@@ -1,0 +1,19 @@
+@if(loading()){
+<div>
+  <div class="message">
+    {{ displayedText() }}
+  </div>
+</div>
+} @else{ @if(success()){
+<div class="teams-list-main">
+  @for(team of myTeams();track team.id){
+  <a routerLink="/home/team-hub/{{ team.id }}" class="team-card-link">
+    <app-team-card [team]="team"></app-team-card>
+  </a>
+  }
+</div>
+} @else{
+<div class="message">
+  {{ displayedText() }}
+</div>
+} }

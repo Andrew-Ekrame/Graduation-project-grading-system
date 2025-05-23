@@ -1,0 +1,54 @@
+
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: #f5f7fa;
+}
+
+.projects-list-main {
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 320px)
+  ); /* changed from 1fr to fixed max width */
+  justify-content: center; /* added to center the grid */
+  gap: 2rem;
+  max-width: 100vw;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Add fixed height to project cards */
+:host ::ng-deep app-project-card {
+  height: 180px; /* Add fixed height */
+  width: 100%;
+  display: block;
+}
+
+.no-projects {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-size: 2.8rem;
+  height: 100%;
+  width: 100%;
+  color: #666;
+  text-align: center;
+  padding: 2rem;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+@media (max-width: 576px) {
+  .projects-list-main {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+}

@@ -1,0 +1,46 @@
+<div class="schedule-card">
+  <div class="project-info">
+    <h2 class="schedule-card--project-name">{{ schedule().projectName }}</h2>
+    <h4 class="schedule-card--project-supervisor">
+      Posted By Dr :
+      <span class="card--supervisor-name">{{ schedule().supervisorName }}</span>
+    </h4>
+    <p class="schedule-card--date">
+      {{ schedule().scheduleDate | date: 'dd/MM/yyyy' }}
+    </p>
+    @if(schedule()?.examiners?.length !== 0 && schedule()?.examiners){
+    <label class="label">Examiners</label>
+    <div class="schedule-card--examiners">
+      @for(examiner of schedule()?.examiners;track examiner.examinerId){
+      <p class="schedule-card--examiner">{{ examiner.examinerName }}</p>
+      }
+    </div>
+    }
+  </div>
+  <div class="schedule-card-body">
+    <label class="label">Specialty</label>
+    <h4 class="schedule-card--program">{{ schedule().specialty }}</h4>
+
+    <label class="label">Team Members</label>
+    <div class="schedule-card--members">
+      @for(member of schedule().teamMembers;track member.id){
+      <div class="schedule-card--member">
+        <div class="member-profile">
+          <div class="profile-image-container">
+            <img
+              [src]="member.profilePicture"
+              alt="member"
+              class="schedule-card--member-img"
+            />
+          </div>
+          <div class="member-details">
+            <p class="schedule-card--member-name">{{ member.fullName }}</p>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    <label class="label">Description</label>
+    <div class="ql-editor quill-project-desc" [innerHTML]="html()"></div>
+  </div>
+</div>

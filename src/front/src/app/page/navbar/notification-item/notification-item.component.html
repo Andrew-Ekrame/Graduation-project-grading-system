@@ -1,0 +1,7 @@
+<div class="notification-item" [class.read]="notification().isRead">
+  <p class="title">{{ notification().title }}</p>
+  <p class="description">{{ notification().description }}</p>
+  @if(!notification().isRead){
+  <button (click)="onMarkAsRead()">Mark as read</button>
+  }
+</div>

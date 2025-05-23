@@ -1,0 +1,91 @@
+<div class="main-container">
+  <div class="profile-box">
+    <!-- Profile Image Section -->
+    <div class="image-section">
+      <img
+        [src]="profile()?.profilePicture ?? 'images/blank-profile-picture.webp'"
+        alt="Profile Picture"
+      />
+
+      <div class="change-photo">
+        <input
+          type="file"
+          id="photo-input"
+          accept="image/*"
+          (change)="openConfirmationPhoto($event)"
+        />
+        <label for="photo-input">Change Photo</label>
+      </div>
+    </div>
+
+    <!-- Profile Info Section -->
+    <div class="info-section">
+      <h1>{{ profile()?.fullName }}</h1>
+      @if(profile()?.role === "Student"){
+      <p>
+        @if(profile()?.specialty==="CS"){ Computer Science }
+        @if(profile()?.specialty==="CS & STAT"){ Computer Science and Statistics
+        } @if(profile()?.specialty==="CS & MATH"){ Computer Science and
+        Mathematics } @if(profile()?.specialty==="CS & PHYS"){ Computer Science
+        and Physics }
+      </p>
+      }
+    </div>
+
+    <!-- Additional Information -->
+    <div class="additional-info">
+      <!-- Forms Section -->
+      <div class="forms-section">
+        <form [formGroup]="nameForm" (ngSubmit)="openConfirmationName()">
+          <h3>Update Username</h3>
+          <input
+            type="text"
+            placeholder="New username"
+            formControlName="name"
+          />
+          <button type="submit" [disabled]="nameForm.invalid">Update</button>
+        </form>
+
+        <form
+          [formGroup]="passwordForm"
+          (ngSubmit)="openConfirmationPassword()"
+        >
+          <h3>Change Password</h3>
+          <input
+            type="password"
+            placeholder="Current password"
+            formControlName="oldPassword"
+          />
+          <input
+            type="password"
+            placeholder="New password"
+            formControlName="newPassword"
+          />
+          <button type="submit" [disabled]="passwordForm.invalid">
+            Update Password
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@if (showPopup()) {
+<app-popup-status-message
+  [status]="status()"
+  [message]="message()"
+  (popup)="closePopup()"
+/>
+} @if (showConfirmation()) {
+<div class="confirmation-overlay">
+  <div class="confirmation-box">
+    <h2>{{ confirmationTitle() }}</h2>
+    <p>{{ confirmationMessage() }}</p>
+    <div class="confirmation-actions">
+      <button class="confirm-btn" (click)="handleConfirmation()">
+        Confirm
+      </button>
+      <button class="cancel-btn" (click)="closeConfirmation()">Cancel</button>
+    </div>
+  </div>
+</div>
+}

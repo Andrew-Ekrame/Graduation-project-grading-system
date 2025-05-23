@@ -1,0 +1,529 @@
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.6rem;
+  height: 6.4rem;
+  background-image: var(--dark-blue-gradient);
+  z-index: 100; /* Ensure the navbar is on top */
+}
+.navbar-links {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  list-style: none;
+  gap: 0.8rem;
+  width: fit-content;
+}
+.nav-link {
+  position: relative;
+  padding: 0.8rem 0.4rem;
+}
+.nav-link > a:link,
+.nav-link > a:visited {
+  text-decoration: none;
+  font-size: 1.4rem;
+  color: var(--text-input-color);
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+  position: relative;
+}
+.nav-link > a:hover,
+.nav-link > a:active,
+.nav-link > a.nav-link-active,
+.nav-link > a.nav-link-active:visited {
+  color: var(--active-link-color);
+}
+.nav-link > a::after {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  content: "";
+  width: 0;
+  height: 0.2rem;
+  background-color: var(--text-input-color);
+  transition: all 0.25s;
+}
+.nav-link > a:hover::after,
+.nav-link > a:active::after,
+.nav-link > a.nav-link-active::after {
+  width: 100%;
+}
+.navbar--info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 1.8rem;
+}
+.notification-icon {
+  cursor: pointer;
+  fill: var(--form-container-color);
+  stroke: var(--form-container-color);
+  position: relative;
+}
+.new-notification::after {
+  position: absolute;
+  content: "";
+  top: -0.4rem;
+  right: -0.4rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: red;
+  border-radius: 50%;
+}
+.logout-btn {
+  background-color: transparent;
+  border: none;
+}
+.logout-icon {
+  cursor: pointer;
+  stroke: #fff;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+.profile-link:link,
+.profile-link:visited {
+  text-decoration: none;
+}
+.profile-link:hover,
+.profile-link:active {
+  text-decoration: none;
+}
+.navbar--profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  color: var(--text-input-color);
+}
+.profile-img {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar-profile-img {
+  height: 100%;
+  width: 100%;
+}
+.profile-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 102; /* Ensure the nav toggle button is on top */
+  position: relative;
+}
+.navbar-toggle-icon {
+  width: 2.4rem;
+  height: 2.4rem;
+  stroke: #fff;
+}
+.navbar-toggle-icon::before,
+.navbar-toggle-icon::after {
+  content: "";
+  width: 2rem;
+  height: 0.2rem;
+  background-color: var(--text-input-color);
+  position: absolute;
+  left: 0;
+}
+.navbar-toggle-icon::before {
+  top: -0.6rem;
+}
+.navbar-toggle-icon::after {
+  top: 0.6rem;
+}
+.navbar-links-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.navbar-links {
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.navbar-close {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--text-input-color);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+.notification-list-container {
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  border-radius: 0;
+  background-color: var(--background-color);
+  z-index: 103; /*notification list container*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  padding: 2rem;
+  padding-top: 4rem;
+}
+.notification-list-container.active {
+  transform: translateX(0);
+  opacity: 1;
+  overflow: hidden;
+}
+.notification-close {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: var(--text-input-color);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  z-index: 103; /*notification close small screen*/
+}
+/* First hide admin dashboard links by default */
+.admin-dashboard-links {
+  display: none;
+}
+
+.admin-dashboard-links a.nav-link-active {
+  color: var(--buttons-color);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Update the admin dashboard links styles */
+.admin-dashboard-links a {
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: all 0.3s;
+  position: relative; /* Add for pseudo-element positioning */
+}
+
+.admin-dashboard-links a::after {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  content: "";
+  width: 0;
+  height: 0.2rem;
+  background-color: var(--text-input-color);
+  transition: all 0.25s;
+}
+
+.admin-dashboard-links a:hover::after,
+.admin-dashboard-links a:active::after,
+.admin-dashboard-links a.nav-link-active::after {
+  width: 100%;
+}
+
+.notification-container {
+  position: relative;
+  display: inline-block;
+}
+
+@media (min-width: 951px) {
+  .notification-list-container {
+    max-height: 500px;
+    width: 500px;
+    position: fixed;
+    top: 7rem;
+    right: 1.2rem;
+    padding: 1rem;
+    border-radius: 5px;
+    transform: translateX(100%); /* Start off-screen to the right */
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  .notification-list-container.active {
+    transform: translateX(0); /* Slide into view */
+    opacity: 1;
+  }
+  /* Desktop view - hide dashboard links in navbar as they'll be in sidebar */
+  .admin-dashboard-links {
+    display: none;
+  }
+}
+@media (min-width: 768px) {
+  .navbar-toggle {
+    display: none;
+  }
+  .navbar-links-container {
+    flex-direction: row;
+    justify-content: space-between;
+    width: auto;
+  }
+  .navbar-links {
+    flex-direction: row;
+    align-items: stretch;
+    width: fit-content;
+  }
+  .notification-list-container.active {
+    display: block;
+    overflow: hidden;
+  }
+}
+@media (max-width: 767px) {
+  .navbar--info {
+    gap: 1.2rem;
+  }
+  .navbar-toggle {
+    display: block;
+    z-index: 102; /* Ensure the toggle button is on top */
+  }
+  .navbar-links-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #1a2b49;
+    z-index: 101; /* Ensure the navbar links container is on top */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  .navbar-links-container.active {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  .navbar-close {
+    display: block;
+  }
+  .navbar-links {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .notification-list-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    background-color: var(--background-color);
+    z-index: 103; /* notification list container small*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align items to the top */
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    padding: 2rem;
+    padding-top: 4rem; /* Add padding to ensure the first item is fully visible */
+  }
+  .notification-list-container.active {
+    transform: translateX(0);
+    opacity: 1;
+    height: 100%; /* Ensure the notification list takes full height */
+  }
+  .notification-close {
+    display: block;
+    top: 1rem;
+    right: 1rem;
+  }
+  .profile-name {
+    font-size: 0.8rem;
+  }
+  .admin-dashboard-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    /* padding-left: 1rem; */
+    margin-top: 0.5rem;
+    /* border-left: 2px solid rgba(255, 255, 255, 0.1); */
+    width: 100%;
+  }
+
+  .admin-dashboard-links a {
+    color: white;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+  }
+
+  .admin-dashboard-links a:hover,
+  .admin-dashboard-links a:active {
+    color: var(--buttons-color);
+    opacity: 1;
+    transform: translateX(5px);
+  }
+
+  .admin-dashboard-links a::after {
+    background-color: var(--text-input-color);
+  }
+
+  .navbar-links-container.active {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    z-index: 1000;
+    padding: 2rem;
+    overflow-y: auto;
+  }
+}
+@media (max-width: 950px) and (min-width: 768px) {
+  .navbar-toggle {
+    display: block;
+    z-index: 102; /* Ensure the toggle button is on top */
+  }
+  .navbar-links-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #1a2b49;
+    z-index: 101; /* Ensure the navbar links container is on top */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  .navbar-links-container.active {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  .navbar-close {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: var(--text-input-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .navbar-links {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .nav-link > a:link,
+  .nav-link > a:visited {
+    font-size: 1.2rem; /* Adjust font size for screens up to 950px */
+    color: var(--text-input-color);
+    text-decoration: none;
+    display: block;
+    padding: 1rem;
+    text-align: center;
+  }
+  .nav-link > a:hover,
+  .nav-link > a:active {
+    color: var(--active-link-color);
+  }
+  .notification-list-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    background-color: var(--background-color);
+    z-index: 103; /* Notification list container for screens up to 950px */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Align items to the top */
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    padding: 2rem;
+    padding-top: 4rem; /* Add padding to ensure the first item is fully visible */
+  }
+  .notification-list-container.active {
+    transform: translateX(0);
+    opacity: 1;
+    width: 100%; /* Ensure it takes full width */
+    height: 100vh; /* Ensure it takes full height */
+    overflow: hidden; /* Prevent scrolling outside the container */
+  }
+  .notification-close {
+    display: block;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: var(--text-input-color);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .navbar--info {
+    gap: 1.2rem;
+  }
+  .admin-dashboard-links {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1.2rem;
+    margin-top: 0.75rem;
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+  }
+
+  .admin-dashboard-links a {
+    color: var(--text-input-color);
+    text-decoration: none;
+    padding: 1rem;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .admin-dashboard-links a:hover,
+  .admin-dashboard-links a:active {
+    color: var(--active-link-color);
+  }
+
+  .admin-dashboard-links a.nav-link-active {
+    color: var(--active-link-color);
+  }
+
+  .admin-dashboard-links a::after {
+    background-color: var(--text-input-color);
+  }
+}

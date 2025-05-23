@@ -1,0 +1,24 @@
+<div class="Main-project-container">
+  @if(isLoading()){
+  <div class="loading">
+    {{ displayedText() }}
+  </div>
+  }@else{ @if(success()){ @for(project of pendingProjects();track project.id){
+  <app-pending-team-card
+    [ideas]="project"
+    [doctor]="allDoctors()"
+    (reviewData)="reviewProject($event)"
+  ></app-pending-team-card>
+  }@empty {
+  <div class="loading">No projects available</div>
+  } }@else {
+  <div class="loading">{{ displayedText() }}</div>
+  } }
+</div>
+@if(showPopup()){
+<app-popup-status-message
+  [status]="status()"
+  [message]="message()"
+  (popup)="closePopup()"
+></app-popup-status-message>
+}

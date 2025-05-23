@@ -1,0 +1,19 @@
+@if(storingService.currentUserProfilePublic()?.role==="Doctor"){
+<button class="create-task-btn" (click)="openAddTask()">Create Task</button>
+} @if(loading()){
+<div class="no-tasks">
+  <p>{{ displayedText() }}</p>
+</div>
+} @else{
+<div class="tasks-list-wrapper">
+  <div class="tasks-list">
+    @for(task of tasksList();track task.id){
+    <app-task [task]="task" (popup)="emitPopup($event)" (changes)="updateTasksList($event)"></app-task>
+    } @empty{
+    <div class="no-tasks">
+      <p>{{ displayedText() }}</p>
+    </div>
+    }
+  </div>
+</div>
+}

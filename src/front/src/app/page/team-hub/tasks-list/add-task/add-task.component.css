@@ -1,0 +1,114 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.back-to-tasks-list-btn {
+  padding: 0.8rem 1.6rem;
+  border: none;
+  background-color: var(--buttons-color);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-end;
+}
+
+.back-to-tasks-list-btn:hover {
+  background-color: var(--button-color-hover);
+}
+
+.add-task-form-wrapper {
+  overflow-y: auto;
+}
+
+.task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.form-group label {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--heading-color);
+  margin-bottom: 0.6rem;
+}
+
+.form-group input {
+  height: 4rem;
+  padding: 0 1.2rem;
+  font-size: 1.3rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  width: 100%;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--buttons-color);
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+}
+
+.error-message {
+  color: var(--error-color);
+  font-size: 1.2rem;
+  margin-top: 0.4rem;
+}
+
+input.error {
+  border: 1px solid var(--error-color);
+}
+
+.members-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.6rem;
+  margin-top: 2rem;
+}
+
+button {
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
+button[type="submit"] {
+  background-color: var(--buttons-color);
+  color: white;
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button[type="button"] {
+  background-color: #ccc;
+}
+
+@media (max-width: 600px) {
+  .input-row {
+    width: 100%;
+    overflow-x: auto;
+  }
+}

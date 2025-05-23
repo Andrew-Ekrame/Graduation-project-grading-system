@@ -1,0 +1,103 @@
+:host {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.Main-projects-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 1.2rem;
+  overflow-y: auto;
+  padding: 1rem;
+  padding-bottom: 8rem;
+}
+.Post {
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.Post .inner-paragraph {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #333;
+  align-self: flex-start;
+}
+
+.accept-form {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.status-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #ffffff;
+  transition: background-color 0.3s;
+}
+
+.accept {
+  background-color: #28a745;
+}
+
+.reject {
+  background-color: #dc3545;
+}
+
+.accept:hover {
+  background-color: #218838;
+}
+
+.reject:hover {
+  background-color: #c82333;
+}
+.project-name {
+  display: -webkit-box; /* For WebKit browsers */
+  display: -moz-box; /* For Firefox */
+  display: box; /* Fallback for older browsers */
+  -webkit-box-orient: vertical; /* For WebKit browsers */
+  -moz-box-orient: vertical; /* For Firefox */
+  box-orient: vertical; /* Fallback for older browsers */
+  -webkit-line-clamp: 4; /* For WebKit browsers */
+  -moz-line-clamp: 4; /* For Firefox */
+  line-clamp: 4; /* Standard property */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis for clipped text */
+  word-break: break-all; /* Enable word break */
+}
+.project-desc {
+  display: -webkit-box; /* For WebKit browsers */
+  display: -moz-box; /* For Firefox */
+  display: box; /* Fallback for older browsers */
+  -webkit-box-orient: vertical; /* For WebKit browsers */
+  -moz-box-orient: vertical; /* For Firefox */
+  box-orient: vertical; /* Fallback for older browsers */
+  -webkit-line-clamp: 4; /* For WebKit browsers */
+  -moz-line-clamp: 4; /* For Firefox */
+  line-clamp: 4; /* Standard property */
+  overflow: hidden; /* Hide overflow */
+  text-overflow: ellipsis; /* Add ellipsis for clipped text */
+  word-break: break-all; /* Enable word break */
+}
+.no-projects {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}

@@ -1,0 +1,41 @@
+<div class="container-instruction">
+  <form class="send-form" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <h1>Send instructions</h1>
+    <label for="title" class="subject-label">Subject:</label>
+
+    <input
+      type="text"
+      placeholder="Enter subject "
+      class="subject"
+      id="title"
+      required
+      formControlName="title"
+    />
+
+    <label for="description" class="describtion desc">Description:</label>
+
+    <textarea
+      placeholder="Enter your instructions here..."
+      rows="8"
+      class="message"
+      id="description"
+      required
+      formControlName="description"
+    ></textarea>
+
+    <label for="role" class="describtion" class="desc">Role:</label>
+    <select class="dropdown" required formControlName="role" id="role">
+      <option value="All">All</option>
+      <option value="Students">Students</option>
+      <option value="Doctors">Doctors</option>
+    </select>
+    <button class="bttn" type="submit">Send</button>
+  </form>
+</div>
+@if(showPopup()){
+<app-popup-status-message
+  [status]="status()"
+  [message]="message()"
+  (popup)="closePopup()"
+></app-popup-status-message>
+}

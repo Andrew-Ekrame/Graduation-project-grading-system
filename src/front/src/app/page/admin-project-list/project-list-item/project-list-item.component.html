@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="members">
+    <div class="supervisor person">
+      <p class="name">Supervisor: {{ project().supervisorName }}</p>
+      <p>Posted by: {{ project().postedBy }}</p>
+      <p class="name">Team: {{ project().teamName }}</p>
+    </div>
+
+    <div class="team">
+      @for(student of project().teamMembers; track student.id) {
+      <div class="person team-member">
+        <img
+          [src]="student.profilePicture"
+          [alt]="'Student ' + student.fullName + ' photo'"
+          class="person-img"
+        />
+        <p class="name">{{ student.fullName }}</p>
+      </div>
+      }
+    </div>
+  </div>
+  <div class="project-desc">
+    <h2 class="desc-title">{{ project().projectName }}</h2>
+    <div class="desc-text ql-editor" [innerHTML]="html()"></div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+@if(isGradingOpen()){
+<app-grade-team
+  (closeGrading)="closeTeamGrading()"
+  [team]="selectedTeam()!"
+  [criteria]="selectedCriteria()!"
+  (popup)="showPopupMessage($event)"
+></app-grade-team>
+} @else{
+<div class="grading-container">
+  <!-- Supervisor Section -->
+  <div class="grading-section">
+    @if(loadingSupervisedTeams()){
+    <div class="message">{{ displayedTextSupervised() }}</div>
+    } @else { @if(successSupervised()){
+    <h2>Teams Under Your Supervision</h2>
+    <div class="teams-grid">
+      @for(specialty of supervisedTeamsBySpecialty();track specialty.specialty){
+      @for(team of specialty.teams;track team.teamId){
+      <div
+        class="team-card"
+        (click)="openSupervisedTeamGrading(specialty.specialty, team.teamId)"
+      >
+        <h3>{{ team.projectName }}</h3>
+        <div
+          class="project-desc ql-editor"
+          [innerHTML]="htmlParser(team.projectDescription)"
+        ></div>
+        <div class="team-members">
+          @for(member of team.teamMembers;track member.id){
+          <div class="member">
+            <img [src]="member.profilePicture" [alt]="member.fullName" />
+            <p>{{ member.fullName }}</p>
+          </div>
+          }
+        </div>
+      </div>
+      } }
+    </div>
+    }@else {
+    <div class="message">{{ displayedTextSupervised() }}</div>
+    } }
+  </div>
+
+  <!-- Examiner Section -->
+  <div class="grading-section">
+    @if(loadingExaminedTeams()){
+    <div class="message">{{ displayedTextExamined() }}</div>
+    } @else { @if(successExamined()){
+    <h2>Teams to Examine</h2>
+    <div class="teams-grid">
+      @for(specialty of examinedTeamsBySpecialty();track specialty.specialty){
+      @for(team of specialty.teams;track team.teamId){
+      <div
+        class="team-card"
+        (click)="openExaminedTeamGrading(specialty.specialty, team.teamId)"
+      >
+        <h3>{{ team.projectName }}</h3>
+        <div
+          class="project-desc ql-editor"
+          [innerHTML]="htmlParser(team.projectDescription)"
+        ></div>
+        <div class="team-members">
+          @for(member of team.teamMembers;track member.id){
+          <div class="member">
+            <img [src]="member.profilePicture" [alt]="member.fullName" />
+            <p>{{ member.fullName }}</p>
+          </div>
+          }
+        </div>
+      </div>
+      } }
+    </div>
+    }@else {
+    <div class="message">{{ displayedTextExamined() }}</div>
+    } }
+  </div>
+</div>
+} @if (showPopup()) {
+<app-popup-status-message
+  [status]="status()"
+  [message]="message()"
+  (popup)="closePopup()"
+/>
+}

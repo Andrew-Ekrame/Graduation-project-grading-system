@@ -1,0 +1,61 @@
+@if(loading()){
+<div class="loading">Loading team data...</div>
+} @else {
+<div class="team-card">
+  <h2 class="team-name">{{ team().teamName }}</h2>
+  <p class="project-name">Project: {{ team().projectName }}</p>
+
+  <div class="members">
+    <h3>Team Members</h3>
+    <div class="member-list">
+      @for (member of team().teamMembers; track member.id) {
+      <div class="member">
+        <img [src]="member.profilePicture" [alt]="member.fullName" />
+        <span>{{ member.fullName }}</span>
+      </div>
+      }
+    </div>
+  </div>
+
+  @if (filteredCriterias().length > 0) {
+  <form [formGroup]="form" (ngSubmit)="submitForm()" class="criterias">
+    <h3>
+      Criterias ({{ team().specialty ?? team().teamMembers[0].specialty }})
+    </h3>
+    <div formArrayName="grades">
+      @for (grade of teamGrades.controls; track grade; let i = $index) {
+      <div [formGroupName]="i" class="team-criteria">
+        <div class="form-field">
+          <label [for]="'teamCriteria' + i">
+            {{ filteredCriterias()[i].name }} (Max:
+            {{ filteredCriterias()[i].maxGrade }})
+          </label>
+          <input
+            type="number"
+            [id]="'teamCriteria' + i"
+            formControlName="grade"
+            min="0"
+            [max]="filteredCriterias()[i].maxGrade"
+            [ngClass]="{
+              'input-error':
+                grade.get('grade')?.invalid && grade.get('grade')?.touched
+            }"
+          />
+          <p class="criteria-description">
+            {{ filteredCriterias()[i].description }}
+          </p>
+          @if (grade.get('grade')?.invalid && grade.get('grade')?.touched) {
+          <p class="error-message">
+            Grade must be between 0 and {{ filteredCriterias()[i].maxGrade }}
+          </p>
+          }
+        </div>
+      </div>
+      }
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Submit Grades</button>
+  </form>
+  }
+</div>
+} 

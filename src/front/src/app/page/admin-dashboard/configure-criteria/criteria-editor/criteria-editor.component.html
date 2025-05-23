@@ -1,0 +1,98 @@
+<div class="criteria-editor-container">
+  <h2>Edit Criteria</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="criteria-form">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        class="form-control"
+      />
+      <div
+        class="error-message"
+        *ngIf="form.get('name')?.errors?.['required'] && form.get('name')?.touched"
+      >
+        Name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        class="form-control"
+        rows="3"
+      ></textarea>
+      <div
+        class="error-message"
+        *ngIf="form.get('description')?.errors?.['required'] && form.get('description')?.touched"
+      >
+        Description is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="maxGrade">Maximum Grade</label>
+      <input
+        id="maxGrade"
+        type="number"
+        formControlName="maxGrade"
+        class="form-control"
+        min="0"
+      />
+      <div
+        class="error-message"
+        *ngIf="form.get('maxGrade')?.errors?.['required'] && form.get('maxGrade')?.touched"
+      >
+        Maximum grade is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="evaluator">Evaluator</label>
+      <select id="evaluator" formControlName="evaluator" class="form-control">
+        <option value="Examiner">Examiner</option>
+        <option value="Supervisor">Supervisor</option>
+        <option value="Admin">Admin</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="givenTo">Given To</label>
+      <select id="givenTo" formControlName="givenTo" class="form-control">
+        <option value="Team">Team</option>
+        <option value="Student">Student</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="specialty">Specialty</label>
+      <select id="specialty" formControlName="specialty" class="form-control">
+        <option value="CS">CS</option>
+        <option value="CS & STAT">CS & STAT</option>
+        <option value="CS & MATH">CS & MATH</option>
+        <option value="CS & PHYS">CS & PHYS</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="term">Term</label>
+      <select id="term" formControlName="term" class="form-control">
+        <option value="First-Term">First Term</option>
+        <option value="Second-Term">Second Term</option>
+      </select>
+    </div>
+
+    <div class="button-group">
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">
+        Save Changes
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

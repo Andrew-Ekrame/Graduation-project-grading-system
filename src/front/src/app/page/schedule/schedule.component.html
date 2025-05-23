@@ -1,0 +1,12 @@
+<div class="schedule-wrapper">
+  @if(loading()){
+  <div class="loading">{{ displayedText() }}</div>
+  } @else { @if(!success()){
+  <div class="loading">{{ displayedText() }}</div>
+  } @else { @for(schedule of listOfSchedules();track
+  schedule.scheduleId){
+  <div class="schedule-card-wrapper">
+    <app-schedule-card [schedule]="schedule"></app-schedule-card>
+  </div>
+   } } }
+</div>

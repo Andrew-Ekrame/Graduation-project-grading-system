@@ -1,0 +1,126 @@
+:host {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 2rem;
+}
+.post-project-form {
+  width: 80%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 1.6rem;
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.post-project-title {
+  font-size: 2.4rem;
+  text-align: center;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.label {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+.input-field {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.input-field::placeholder {
+  font-size: 1rem;
+}
+.input-text-area {
+  width: 100%;
+  padding: 1rem;
+  resize: none;
+  overflow-y: auto;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.input-text-area::placeholder {
+  font-size: 1rem;
+}
+.submit {
+  align-self: flex-end;
+  padding: 0.8rem 1.6rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #27ae60;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.submit:hover {
+  background-color: green;
+  color: #f5f5f5;
+}
+
+@media (max-width: 576px) {
+  .post-project-form {
+    padding: 1rem;
+    width: 100%;
+  }
+  .post-project-title {
+    font-size: 2rem;
+  }
+  .input-field,
+  .input-text-area {
+    width: 100%;
+  }
+  .input-text-area {
+    padding: 0.8rem;
+  }
+  .submit {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .post-project-form {
+    padding: 1.5rem;
+  }
+  .post-project-title {
+    font-size: 2.2rem;
+  }
+  .input-field,
+  .input-text-area {
+    width: 90%;
+  }
+  .submit {
+    width: 90%;
+    padding: 0.8rem 1.2rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .post-project-form {
+    padding: 2rem;
+  }
+  .post-project-title {
+    font-size: 2.4rem;
+  }
+  .input-field,
+  .input-text-area {
+    width: 100%;
+  }
+  .submit {
+    width: 100%;
+    padding: 0.8rem 1.4rem;
+  }
+}

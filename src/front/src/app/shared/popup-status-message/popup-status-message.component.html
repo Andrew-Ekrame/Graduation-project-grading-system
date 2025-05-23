@@ -1,0 +1,11 @@
+<div
+  class="message"
+  [ngClass]="{
+    success: status() === true,
+    error: status() === false,
+  }"
+  id="message"
+  (click)="hideMessage()"
+>
+  {{ message() }}
+</div>

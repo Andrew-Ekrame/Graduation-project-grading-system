@@ -1,0 +1,201 @@
+:host {
+  display: block;
+  width: 100%;
+  height: fit-content;
+}
+.team-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 15px 0;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  max-width: 100%;
+}
+
+.team-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.team-card h2 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.project-name {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+/* Team Member Section */
+.members {
+  margin-bottom: 20px;
+}
+
+.members h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.member-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: flex-start;
+}
+
+.member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+}
+
+.member img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
+  margin-bottom: 5px;
+}
+
+.member span {
+  font-size: 0.9rem;
+  color: #333;
+  text-align: center;
+}
+
+/* Criteria Section */
+.criterias {
+  margin-top: 25px;
+}
+
+.criterias h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.team-criteria {
+  margin-bottom: 20px;
+}
+
+.team-criteria .form-field {
+  margin-bottom: 12px;
+}
+
+.team-criteria label {
+  font-size: 1rem;
+  color: #444;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.team-criteria input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.team-criteria input:focus {
+  border-color: #1976d2;
+  outline: none;
+}
+
+.team-criteria .criteria-description {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 8px;
+}
+
+.team-criteria .error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 5px;
+}
+
+/* Button Styles */
+button {
+  background-color: #1976d2;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  margin-top: 20px;
+}
+
+button:disabled {
+  background-color: #cccccc; /* Grey background */
+  color: #666666; /* Grey text */
+  cursor: not-allowed; /* Change cursor to show it's not clickable */
+  opacity: 0.6; /* Make the button appear faded */
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .team-card {
+    padding: 15px;
+  }
+
+  .team-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .member-list {
+    justify-content: center;
+  }
+
+  .member {
+    width: 80px;
+  }
+
+  .criterias h3 {
+    font-size: 1rem;
+  }
+
+  .team-criteria input {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  button[type="submit"] {
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-card {
+    padding: 12px;
+  }
+
+  .team-card h2 {
+    font-size: 1.3rem;
+  }
+
+  .member-list {
+    gap: 10px;
+  }
+
+  .member {
+    width: 60px;
+  }
+
+  .team-criteria input {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  button[type="submit"] {
+    padding: 8px 16px;
+  }
+}

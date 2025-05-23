@@ -1,0 +1,24 @@
+<form class="post-project-form" (ngSubmit)="onSubmit()" [formGroup]="form">
+  <h2 class="post-project-title">Post Project</h2>
+  <div class="input-container">
+    <label class="label" for="title">Project Title</label>
+    <input
+      type="text"
+      class="input-field"
+      id="title"
+      name="title"
+      placeholder="Project Title"
+      formControlName="title"
+    />
+  </div>
+  <label class="label">Project Description</label>
+  <div #editorContainer class="editor-container"></div>
+  <button class="submit" id="post-project-dr-btn" type="submit">Post</button>
+</form>
+@if(showPopUp()){
+<app-popup-status-message
+  [message]="popUpMessage"
+  [status]="popUpStatus"
+  (popup)="hidePopUp()"
+></app-popup-status-message
+>}

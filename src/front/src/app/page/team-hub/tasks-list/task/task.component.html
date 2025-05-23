@@ -1,0 +1,36 @@
+<div class="task">
+  <h3 class="task-name">{{ task().name }}</h3>
+  <p class="deadline">{{ task().deadline }}</p>
+  <div class="task-description ql-editor" [innerHTML]="html()"></div>
+  <ul class="assigned-members">
+    @for(member of members();track member.studentId){
+    <li class="task-member">
+      <div class="task-member--img">
+        <img [src]="member.studentProfilePicture" alt="member image" />
+      </div>
+      <p class="task-member--name">{{ member.studentName }}</p>
+      <div
+        [ngClass]="{
+          'task-member--finished': member.status === 'Completed',
+          'task-member--not-finished': member.status === 'Pending'
+        }"
+      ></div>
+      @if(storingService.currentUserProfilePublic()?.role==="Doctor" &&
+      member.status === 'Pending'){
+      <button
+        class="finish-task"
+        (click)="markTaskAsFinished(member.studentId)"
+      >
+        Finish
+      </button>
+      }
+    </li>
+    }
+  </ul>
+</div>
+<div
+  [ngClass]="{
+    'task--finished': task().status === 'Completed',
+    'task--not-finished': task().status === 'Pending'
+  }"
+></div>

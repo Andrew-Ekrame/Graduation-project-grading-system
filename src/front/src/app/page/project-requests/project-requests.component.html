@@ -1,0 +1,19 @@
+@if(LoadingP() || LoadingR() || !successP() || !successR()) {
+<div class="message">
+  {{ displayedText() }}
+</div>
+} @else if(!LoadingP() && !LoadingR() && successP() && successR()){ @for(project
+of projects();track project.id){ @if(requestsForProject(project.id).length > 0){
+<app-project-requests-list
+  class="project-data-wrapper"
+  [project]="project"
+  [requests]="requestsForProject(project.id)"
+  (popup)="openPopup($event)"
+></app-project-requests-list>
+} } } @if(popup()){
+<app-popup-status-message
+  [message]="popupData().message"
+  [status]="popupData().status"
+  (popup)="hidePopup()"
+></app-popup-status-message>
+}

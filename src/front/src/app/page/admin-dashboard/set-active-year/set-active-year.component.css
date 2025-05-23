@@ -1,0 +1,104 @@
+:host {
+  width: 100%;
+  display: block;
+}
+
+.container {
+  padding: 2rem 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  margin-bottom: 2rem;
+  font-size: 1.75rem;
+  color: #222;
+  text-align: center;
+}
+
+.year-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.year-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s;
+}
+
+.year-item.active {
+  border-color: #007bff;
+  background-color: #e6f2ff;
+}
+
+.year-details h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.year-details p {
+  margin: 0.25rem 0;
+  color: #555;
+}
+
+.year-action {
+  margin-top: 1rem;
+  align-self: flex-end;
+}
+
+.active-badge {
+  background-color: #28a745;
+  color: white;
+  padding: 0.4rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+button {
+  padding: 0.5rem 1.25rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+@media (min-width: 600px) {
+  .year-item {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .year-details {
+    flex: 1;
+  }
+
+  .year-action {
+    margin-top: 0;
+    margin-left: 1rem;
+  }
+}

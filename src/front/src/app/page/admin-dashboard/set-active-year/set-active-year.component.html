@@ -1,0 +1,34 @@
+<div class="container">
+  @if(loading()){
+  <div class="loading">{{ displayedText() }}</div>
+  } @else { @if(!success()){
+  <div class="loading">{{ displayedText() }}</div>
+  } @else {
+    <h2>Set Active Academic Year</h2>
+    <div class="year-list">
+      @for (year of academicYears(); track year) {
+        <div class="year-item" [ngClass]="{ 'active': year.status === 'Active' }">
+          <div class="year-details">
+            <h3>{{ year.year }}</h3>
+            <p><strong>First Term:</strong> {{ year.firstTermStart | date: 'dd/MM/yyyy'}} → {{ year.firstTermEnd | date: 'dd/MM/yyyy'}}</p>
+            <p><strong>Second Term:</strong> {{ year.secondTermStart | date: 'dd/MM/yyyy'}} → {{ year.secondTermEnd | date: 'dd/MM/yyyy'}}</p>
+          </div>
+          <div class="year-action">
+            @if (year.status === 'Active') {
+              <span class="active-badge">Currently Active</span>
+            } @else {
+              <button (click)="setActiveYear(year)">Set as Current Year</button>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  } }
+</div>
+@if(showPopup()){
+<app-popup-status-message
+  [status]="status()"
+  [message]="message()"
+  (popup)="closePopup()"
+></app-popup-status-message>
+}

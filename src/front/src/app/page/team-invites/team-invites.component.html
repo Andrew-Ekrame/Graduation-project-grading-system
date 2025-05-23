@@ -1,0 +1,16 @@
+@if(isLoading()){
+<div class="loading">{{ displayedText() }}</div>
+} @else { @if(success()){
+<div class="invites-list-wrapper">
+  @for(invite of invites();track invite.invitationId){
+  <div class="invite-card-wrapper">
+    <app-invite-card
+      [invite]="invite"
+      (removeInvite)="removeInvite($event)"
+    ></app-invite-card>
+  </div>
+  }
+</div>
+} @else {
+<div class="loading">{{ displayedText() }}</div>
+} }

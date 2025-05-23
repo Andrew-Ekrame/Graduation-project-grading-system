@@ -1,0 +1,50 @@
+<!-- <div class="container">
+  <div class="team">
+    <h1>Team Name</h1>
+    <div class="images-container">
+      <img src="images/profile1.jpg" alt="member 1" />
+      <img src="images/profile2.jpg" alt="member 2" />
+      <img src="images/profile3.jpg" alt="member 3" />
+      <img src="images/profile4.jpg" alt="member 4" />
+    </div>
+    <form>
+      <div class="creiteria">
+        <label for="">Deliverables</label> <input type="number" />
+      </div>
+
+      <div class="creiteria">
+        <label for="">Oral</label> <input type="number" />
+      </div>
+      <div class="creiteria">
+        <label for="">Presentation</label> <input type="number" />
+      </div>
+      <div class="creiteria">
+        <label for="">Documentation</label> <input type="number" />
+      </div>
+      <div class="creiteria">
+        <label for="">Idea</label> <input type="number" />
+      </div>
+      <div class="button-container">
+        <button type="submit" class="confirm-btn">Confirm</button>
+      </div>
+    </form>
+  </div>
+</div> -->
+<div class="team-list">
+  @for(team of teams();track team.teamId){
+  <app-team-card-admin-grading
+    [filteredCriterias]="
+      getFilteredCriterias(team.specialty ?? team.teamMembers[0].specialty)
+    "
+    [team]="team"
+    (outputForm)="submitForm($event)"
+  ></app-team-card-admin-grading>
+  }
+</div>
+@if(showPopup()){
+  <app-popup-status-message
+    [status]="status()"
+    [message]="message()"
+    (popup)="closePopup()"
+  ></app-popup-status-message>
+  }

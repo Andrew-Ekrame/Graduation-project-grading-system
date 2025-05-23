@@ -1,0 +1,132 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+}
+
+.container-admin {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  height: 100%;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: white;
+  align-self: center;
+  transition: all 0.3s ease;
+  display: block;
+  padding: 15px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 100;
+}
+
+a:hover,
+a:active {
+  color: var(--buttons-color);
+}
+
+.links {
+  background-color: var(--background-color);
+  padding: 1rem;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.5rem;
+}
+
+.links a {
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+  display: block;
+  font-size: 1.2rem;
+  font-weight: 100;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+.links a:hover {
+  color: var(--buttons-color);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.main-view {
+  padding: 1.5rem;
+  overflow-y: auto;
+  height: 100%;
+  font-size: 1rem;
+}
+
+.background-image {
+  display: block;
+  transform: scale(65%);
+}
+
+.toggle-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 40px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+
+.toggle-sidebar div {
+  width: 100%;
+  height: 4px;
+  background-color: var(--buttons-color);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .container-admin {
+    grid-template-columns: 1fr;
+  }
+  .main-view {
+    padding: 0.8rem;
+    overflow-y: auto;
+    height: 100%;
+    overflow-x: hidden;
+  }
+  .links {
+    display: none;
+  }
+
+  .main-view {
+    width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  .toggle-sidebar {
+    display: none;
+  }
+
+  .links {
+    display: flex;
+    height: 100%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-admin {
+    height: 100%;
+  }
+
+  .links {
+    height: 100%;
+    overflow-y: auto;
+  }
+}

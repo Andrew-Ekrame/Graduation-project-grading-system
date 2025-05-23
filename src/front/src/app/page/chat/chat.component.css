@@ -1,0 +1,66 @@
+/* layout of window */
+.chat-window {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  background-color: var(--background-color-light);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3rem 1fr;
+  overflow-y: hidden;
+  justify-items: stretch;
+  align-items: stretch;
+  z-index: 101; /* Ensure the chat window is above the navbar */
+}
+@media (max-width: 767px) {
+  .chat-window {
+    height: 100vh;
+    width: 100vw;
+    border-radius: 0;
+  }
+}
+/* closing button */
+.close-btn {
+  background-color: var(--button-color-hover);
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  border: none;
+}
+.close-btn:hover {
+  background-color: var(--buttons-color);
+}
+.close-chat-window-icon {
+  width: 2rem;
+  height: 100%;
+}
+.close-btn:hover .close-chat-window-icon {
+  filter: invert(1);
+}
+/* chat list */
+.groups-list {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+/* chat card */
+.group {
+  background-color: var(--form-container-color);
+  padding: 0.4rem 0.8rem;
+  border-radius: 3px;
+}
+.project-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.last-message {
+  font-size: 1rem;
+}
+/* group chat wrapper */
+.group-chat-wrapper {
+  background-color: white;
+}

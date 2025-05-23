@@ -1,0 +1,45 @@
+<div class="Main-projects-container">
+  @if(loadingProjects()){ @for(project of projects();track project.id){
+  <div class="Post">
+    <div class="inner-paragraph">
+      <strong> Project Title: </strong>
+      <span class="project-name"> {{ project.name }} </span>
+    </div>
+
+    <div class="inner-paragraph">
+      <strong>Project Description:</strong>
+      <div
+        class="ql-editor project-desc"
+        [innerHTML]="parseHtmlFromApi(project.description)"
+      ></div>
+    </div>
+
+    <div class="inner-paragraph">
+      <strong>Posted By:</strong>
+      <span class="project-supervisor">{{ project.doctorName }}</span>
+    </div>
+
+    <div class="accept-form">
+      <button class="accept status-btn" (click)="accept(project.id)">
+        Accept
+      </button>
+      <button class="reject status-btn" (click)="reject(project.id)">
+        Reject
+      </button>
+    </div>
+  </div>
+  }
+  @empty {
+  <div class="no-projects">
+    <p>No projects found</p>
+  </div>
+  }
+ }
+</div>
+@if(showPopup()){
+<app-popup-status-message
+  [status]="status()"
+  [message]="message()"
+  (popup)="closePopup()"
+></app-popup-status-message>
+}

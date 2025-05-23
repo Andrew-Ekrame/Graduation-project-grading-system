@@ -1,0 +1,99 @@
+:host {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.Post {
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+}
+
+.Post p {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #333;
+  align-self: flex-start;
+}
+
+.accept-form {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.status-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #ffffff;
+  transition: background-color 0.3s;
+}
+
+.accept {
+  background-color: #28a745;
+}
+
+.reject {
+  background-color: #dc3545;
+}
+
+.accept:hover {
+  background-color: #218838;
+}
+
+.reject:hover {
+  background-color: #c82333;
+}
+
+#Doctors {
+  width: 30%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+#Doctors:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
+#Doctors::placeholder {
+  color: #6c757d;
+  font-style: italic;
+}
+
+option {
+  background-color: #ffffff;
+  font-size: 1rem;
+  color: #333;
+  border: 1px solid #ced4da;
+}
+
+.description {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #333;
+  align-self: flex-start;
+}
+
+.project-name,
+.project-desc {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}

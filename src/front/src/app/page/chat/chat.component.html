@@ -1,0 +1,21 @@
+<div class="chat-window">
+  <button class="close-btn" (click)="closeChatWindow()">
+    <img
+      src="icons/close.svg"
+      alt="close chat window"
+      class="close-chat-window-icon"
+    />
+  </button>
+  @if(!openedChat()){
+  <div class="groups-list">
+    <div class="group" (click)="openGroupChat(1)">
+      <p class="project-name">Project name</p>
+      <p class="last-message">Last message</p>
+    </div>
+  </div>
+  } @else {
+  <div class="group-chat-wrapper">
+    <app-group-chat [selectedGroupChat]="selectGroupChat()"></app-group-chat>
+  </div>
+  }
+</div>
